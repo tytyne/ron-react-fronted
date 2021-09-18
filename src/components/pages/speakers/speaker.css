@@ -1,0 +1,185 @@
+* {
+   
+    margin: 0;
+    padding: 0;
+    /* height: 100vh; */
+  }
+  
+  .flex-container {
+    display: flex;
+    /* flex-wrap: row; */
+    /* flex-direction: row; */
+    /* font-size: 30px; */
+    /* text-align: center; */
+  }
+  
+  .flex-item-left {
+    background-color: #f1f1f1;
+    padding: 10px;
+    flex: 50%;
+  }
+  
+  
+  .flex-item-right img {
+   height: 500px;
+   width:500px
+  }
+  
+  
+  /* Responsive layout - makes a one column-layout instead of a two-column layout */
+  @media (max-width: 800px) {
+    .flex-item-right, .flex-item-left {
+      flex: 100%;
+    }
+  }
+  
+  /* form */
+  
+  .logo{
+    justify-content: center;
+    padding-left:40vh;
+    padding-top:25vh
+  }
+  .logo h4{
+    font-weight: 700;
+    margin-top:3vh
+  }
+  .logo h2{
+    margin-top:15vh;
+   font-weight: 700;
+  }
+  .logo img{
+      height: 15px;
+      width: 15px;
+  }
+  #login-row #login-column #login-box {
+    margin-top: 2vh;
+    max-width: 500px;
+    height: 600px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    background-color: white;
+    /* margin-left:12vh; */
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    /* margin-left:-35vh; */
+    margin-left:15%
+  
+   
+  }
+  
+  
+   #login-row #login-column #login-box #login-form {
+    padding: 20px;
+   
+  }
+   #login-row #login-column #login-box #login-form h4{
+    margin-bottom: 25px;
+   
+  }
+   #login-row #login-column #login-box #login-form label {
+    margin-top: 40px;
+    color:#4B4B4B;
+    font-weight: 600;
+  }
+   #login-row #login-column #login-box #login-form [type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  
+  }
+  #login-row #login-column #login-box #login-form [type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  
+  }
+   #login-row #login-column #login-box #login-form [type=button] {
+  background-color: #00984F; 
+  border: 2px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 7px;
+  
+  }
+  
+  #login-row #login-column #login-box #login-form label {
+    margin-bottom: 2px;
+  }
+   #login-row #login-column #login-box #login-form #forgot-link {
+    margin-top: -35px;
+    text-align: left;
+    text-decoration: none;
+    color: #00984F;
+  
+  }
+   #login-row #login-column #login-box #login-form .text-right {
+    margin-top: 20px;
+    text-align: right;
+    
+  }
+   #login-row #login-column #login-box #login-form .button {
+  
+    background-color:#00984F;
+    border-radius:5px
+    
+  }
+   #login-row #login-column #login-box #login-form #forgot-link a {
+  
+    text-decoration: none;
+    color:#00984F;
+    font-weight: 600;
+    font-size: 15px;
+  
+    
+    
+  }
+   #login-row #login-column #login-box #login-form ::placeholder { 
+    color: rgba(75, 75, 75, 0.5);
+    font-weight:500
+  }
+  
+  .left{
+      background-color: #E5E5E5; 
+  }
+  .right{
+    background-color: white;
+    height: 100vh;
+  }
+  .right img {
+    height: 500px;
+    width: 600px;
+  }
+  @media only screen and (max-width: 529px) {
+  
+        #login .container #login-row #login-column #login-box {
+        margin-top: 1vh;
+      
+        
+      }
+  }
+  @media only screen and (max-width: 529px) {
+  
+    #login .container #login-row #login-column #login-box {
+    margin-top: 1vh;
+  
+    
+  }
+  }
+  
+  
+  @media only screen and (max-width: 529px) {
+    .logo {
+    display: none;
+  
+    
+  }
+  }
+  
+  /* end form */

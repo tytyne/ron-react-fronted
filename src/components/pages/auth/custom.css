@@ -1,0 +1,26 @@
+i {
+    position: absolute;
+    top: 63%;
+    right: 42%;
+  }
+  i:hover {
+    color: green;
+    cursor: pointer;
+  }
+  /* body {
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+  } */
+
+  @media screen and (max-width: 992px) {
+    i {
+      position: absolute;
+      top: 40%;
+      right: 42%;
+      right:12%
+    }
+    i:hover {
+      color: green;
+      cursor: pointer;
+    }
+  }
