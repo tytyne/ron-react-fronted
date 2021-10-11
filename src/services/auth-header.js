@@ -1,7 +1,7 @@
 
 export default function authHeader(){
     const user=JSON.parse(localStorage.getItem('user'))
-   console.log(user)
+   console.log("check current user",user)
     
     if(user){
         return {
@@ -15,3 +15,4 @@ export default function authHeader(){
     }
     
 }
+

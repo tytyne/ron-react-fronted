@@ -3,12 +3,13 @@ import axios from "axios";
 import authHeader from "./auth-header";
 import{handleResponse} from "../helpers/handleResponse"
 
-const API_URL = "http://localhost:5000/api/v1/";
 
+const {REACT_APP_BACKEND_URL, REACT_APP_VERSION} = process.env
+const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 
 const getAllUsers=()=>{
-  const response= fetch("http://localhost:5000/api/v1")
+  const response= fetch(API_URL)
  
    .then(resp => resp.json())
    .catch((e)=>{

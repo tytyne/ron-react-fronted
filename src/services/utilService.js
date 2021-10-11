@@ -1,12 +1,14 @@
 
 import axios from "axios"
 
+const {REACT_APP_BACKEND_URL, REACT_APP_VERSION} = process.env
+const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
    const hostTypes = () => {
-    return axios.get(`http://localhost:5000/api/v1/hosts`);
+    return axios.get(API_URL +`/hosts`);
   };
 
   const getEvents=()=>{
-    const response= fetch("http://localhost:5000/api/v1/events")
+    const response= fetch(API_URL +`/events`)
    
      .then(resp => resp.json())
      .catch((e)=>{
@@ -18,7 +20,7 @@ import axios from "axios"
   }
 
   const getHostss=()=>{
-    const fetchPromise=fetch('http://localhost:5000/api/v1/hosts');
+    const fetchPromise=fetch(API_URL +`/hosts`);
     fetchPromise.then(response => {
       return response.json();
     }).then(broadcasts => {

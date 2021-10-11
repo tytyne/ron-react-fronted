@@ -5,7 +5,9 @@ import{handleResponse} from "../helpers/handleResponse"
 import FormData from "form-data"
 import fs from "fs"
 
-const API_URL = "http://localhost:5000/api/v1/";
+
+const {REACT_APP_BACKEND_URL, REACT_APP_VERSION} = process.env
+const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 
 const get = (id) => {
@@ -27,20 +29,9 @@ const insertBroadcast = ({Comment,TargetType,image,TargetID,Status,selectedFile}
    headers:{"Content-Type": "multipart/form-data"}
  })
   return 
-  // axios.post(API_URL +`broadcast`,{headers:{
-  //   "Content-Type": "multipart/form-data",
-  // },data:formData});
+ 
 };
 
-
-// const insertBroadcast = (data)=> {
-
-
- 
-//   return  axios.post(API_URL +`broadcast`,{headers:{
-//     "Content-Type": "multipart/form-data",
-//   },data});
-// };
 
 const updateBroadcastT = (id,data) => {
 
@@ -61,7 +52,7 @@ const findByInput = (input) => {
   return  axios.get(API_URL+`/broadcastByInput?input=${input}`);
 };
 const getAllBroadcasts=()=>{
-  const response= fetch("http://localhost:5000/api/v1/broadcasts")
+  const response= fetch(`${API_URL}/broadcasts`)
  
    .then(resp => resp.json())
    .catch((e)=>{
@@ -72,7 +63,7 @@ const getAllBroadcasts=()=>{
    
  }
   const getTitles=()=>{
-    const fetchPromise=fetch('http://localhost:5000/api/v1/hosts');
+    const fetchPromise=fetch(`${API_URL}/hosts`);
     fetchPromise.then(response => {
       return response.json();
     }).then(events => {

@@ -3,8 +3,6 @@ import "./event.css";
 import { Grid } from "@material-ui/core";
 import Controls from "../../../components/controls/Controls";
 import { useForm, Form } from "../../../components/useForm";
-import EventDataService from "../../../services/event.service";
-import * as employeeService from "../../../services/employeeService";
 import discussionService from "../../../services/discussions.service"
 import hostTypeService from "../../../services/hostType.service";
 import { v4 as uuidv4 } from 'uuid';
@@ -87,63 +85,6 @@ export default function EventForm(props) {
     console.log("get data",data)
     
     
- 
-
-    EventDataService.insertEvent(data)
-      .then((response) => {
-    
-        setValues({
-          Id: response.data.Id,
-          EventTitle: response.data.EventTitle,
-          EventStartTime: response.data.EventStartTime,
-          EventDuration: response.data.EventDuration,
-          EventDescription: response.data.EventDuration,
-          EventStreamEnbedCode: response.data.EventStreamEnbedCode,
-          HostType: response.data.HostType,
-          HostDiscussionSpace: response.data.HostDiscussionSpace,
-        });
-        console.log(response,"check response")
-        console.log(response.data.HostType,"who whooo")
-        setSubmitted(true);
-        
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-
-
-      EventDataService.updateEvent(data)
-        .then((response) => {
-          setValues({
-            Id: response.data.Id,
-            EventTitle: response.data.EventTitle,
-            EventStartTime: response.data.EventStartTime,
-            EventDuration: response.data.EventDuration,
-            EventDescription: response.data.EventDuration,
-            EventStreamEnbedCode: response.data.EventStreamEnbedCode,
-            HostType: response.data.HostType,
-            HostDiscussionSpace: response.data.HostDiscussionSpace,
-          });
-          setSubmitted(true);
-         console.log(response)
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-
-        // function handleHostTypes(e){
-
-        //   setValues(e.values.HostType)
-        //   console.log("checking valuessss")
-        //   console.log("checking values",values)
-        //   if(values==1 || values==3){
-        //    return setDiscussions("showDiscForm")
-        //   }
-        //   if(values==2 || values==4){
-        //    return setDiscussions("hideDiscForm")
-        //   }
-         
-        // }
   
         const handleSubmit = (e) => {
           e.preventDefault();

@@ -1,11 +1,7 @@
 import axios from "axios"
-import { BehaviorSubject } from 'rxjs';
-import{handleResponse} from "../helpers/handleResponse"
 
-
-
-const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')));
-const API_URL="http://localhost:5000/api/v1"
+const {REACT_APP_BACKEND_URL, REACT_APP_VERSION} = process.env
+const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 const register = (username, email, password) => {
     return axios.post(API_URL + "signup", {
@@ -18,7 +14,9 @@ const login=(email,password)=>{
     return axios.post(`${API_URL}/login`,{
         email,password
     }).then((response)=>{
+      console.log("check login response",response)
         if(response.data.token){
+          console.log("check login response",response)
             localStorage.setItem("user",JSON.stringify(response.data))
         }
         console.log(response)
@@ -42,7 +40,6 @@ const reset=(Password,ConfirmPassword,token)=>{
 
 const logout=()=>{
   localStorage.removeItem("user")
-  currentUserSubject.next(null);
 }
 
 

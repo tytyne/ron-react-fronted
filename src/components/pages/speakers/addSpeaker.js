@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import Controls from "../../../components/controls/Controls";
 import { useForm, Form } from "../../../components/useForm";
-import SpeakerDataService from "../../../services/speaker.service";
 import eventService from "../../../services/event.service";
-import axios from "axios";
+
 
 
 
@@ -68,57 +67,18 @@ export default function SpeakerForm(props) {
     useForm(initialFValues, true, validate);
 
 
-    var data = {
-      Name:values.Name,
-      Email:values.Email,
-      Phone:values.Phone,
-      About:values.About,
-      Title:values.Title,
-      LiveStreamEventID:values.LiveStreamEventID
-    };
-    console.log("check data",data)
-    // const saveSpeaker=()=>{
-      console.log("check this function",SpeakerDataService.insertSpeaker())
+    // var data = {
+    //   Name:values.Name,
+    //   Email:values.Email,
+    //   Phone:values.Phone,
+    //   About:values.About,
+    //   Title:values.Title,
+    //   LiveStreamEventID:values.LiveStreamEventID
+    // };
+    // console.log("check data",data)
+  
 
-    // SpeakerDataService.insertSpeaker(data)
-    //   .then(response => {
-    //     setValues({
-        
-    //       Name:response.data.Name,
-    //       Email:response.data.Email,
-    //       Phone:response.data.Phone,
-    //       About:response.data.About,
-    //       Title:response.data.Title,
-    //       Moderator:response.data.Moderator,
-    //       LiveStreamEventID:response.data.LiveStreamEventID
-    //     },
-    //     console.log(response)
-    //     );
-    //     setSubmitted(true);
-    //   })
-    //   .catch(e => {
-    //     console.log(e);
-    //   });
-      // console.log("check this function",SpeakerDataService.insertSpeaker())
-
-      // console.log("check this function2222",SpeakerDataService.updateSpeaker())
-      // SpeakerDataService.updateSpeaker(data)
-      // .then(response => {
-      //   setValues({
-      //     Name:response.data.Name,
-      //     Email:response.data.Email,
-      //     Phone:response.data.Phone,
-      //     About:response.data.About,
-      //     Title:response.data.Title,
-      //     Moderator:response.data.Moderator,
-      //     LiveStreamEventID:response.data.LiveStreamEventID
-      //   });
-      //   setSubmitted(true);
-      // })
-      // .catch(e => {
-      //   console.log(e);
-      // });
-      // console.log("check this function22",SpeakerDataService.updateSpeaker())
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();

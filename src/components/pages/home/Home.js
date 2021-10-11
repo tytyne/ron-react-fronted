@@ -1,61 +1,16 @@
 import React from 'react';
 // import 'font-awesome/css/font-awesome.min.css';
-import avatar from "../../../assets/pictures/avatar.png"
 import HomeHeader from './HomeHeader';
 import DesignIcons from "../../Dashboard/icons"
+import Stats from "./stats"
+import TopCard from "./TopCard"
 import "./home.css"
 const MainContent = () => {
   return ( 
     <>
           <HomeHeader/>
+          <TopCard/>
 
-          <div className="main__cards">
-            <div className="card">
-              <DesignIcons.UserColor/>
-              {/* <i
-                className="fa fa-user-circle-o fa-2x text-lightblue"
-                aria-hidden="true"
-              ></i> */}
-              <div className="card_inner">
-                <p className="text-primary-p">Number of Subscribers</p>
-                <span className="font-bold text-title">578</span>
-              </div>
-            </div>
-
-            <div className="card">
-            <DesignIcons.CalendarColor/>
-              {/* <i className="fa fa-calendar fa-2x text-red" aria-hidden="true"></i> */}
-              <div className="card_inner">
-                <p className="text-primary-p">Number of Events</p>
-                <span className="font-bold text-title">2467</span>
-              </div>
-            </div>
-
-            <div className="card">
-            <DesignIcons.VideoColor/>
-              {/* <i
-                className="fa fa-video-camera fa-2x text-yellow"
-                aria-hidden="true"
-              ></i> */}
-              <div className="card_inner">
-                <p className="text-primary-p">Number of Broadcast posts</p>
-                <span className="font-bold text-title">340</span>
-              </div>
-            </div>
-
-            <div className="card">
-            <DesignIcons.BuildingColor/>
-              {/* <i
-                className="fa fa-building-o fa-2x text-green"
-                aria-hidden="true"
-              ></i> */}
-              <div className="card_inner">
-                <p className="text-primary-p">Number of LGA</p>
-                <span className="font-bold text-title">35</span>
-              </div>
-            </div>
-          </div>
-       
           <div className="charts">
             <div className="charts__left">
               <div className="charts__left__title">
@@ -64,7 +19,6 @@ const MainContent = () => {
                
                 </div>
                 <DesignIcons.UserColor/>
-                {/* <i className="fa fa-user-circle-o" aria-hidden="true"></i> */}
               </div>
               <div id="chart"></div>
             </div>
@@ -75,31 +29,11 @@ const MainContent = () => {
                   <h1>Stats Reports</h1>
                   <p>numbers,status</p>
                 </div>
-                {/* <i className="fa fa-files-o" aria-hidden="true"></i> */}
                 <DesignIcons.User/>
               </div>
 
-              <div className="charts__right__cards">
-                <div className="card1">
-                  <h1>Users</h1>
-                  <p>892</p>
-                </div>
+              <Stats/>
 
-                <div className="card2">
-                  <h1>Broadcast posts</h1>
-                  <p>32</p>
-                </div>
-
-                <div className="card3">
-                  <h1>LGA</h1>
-                  <p>89</p>
-                </div>
-
-                <div className="card4">
-                  <h1>DSPs</h1>
-                  <p>18</p>
-                </div>
-              </div>
             </div>
           </div>
       
@@ -110,7 +44,6 @@ const MainContent = () => {
                   <h1>Posts Reports</h1>
                   <p>Names,comments,likes</p>
                 </div>
-                {/* <i className="fa fa-user-circle-o" aria-hidden="true"></i> */}
                 <DesignIcons.User/>
               </div>
             

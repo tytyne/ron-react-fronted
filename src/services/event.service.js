@@ -3,11 +3,13 @@ import axios from "axios";
 import authHeader from "./auth-header";
 import{handleResponse} from "../helpers/handleResponse"
 
-const API_URL = "http://localhost:5000/api/v1/";
+
+const {REACT_APP_BACKEND_URL, REACT_APP_VERSION} = process.env
+const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 
 const getAllNames=()=>{
-  const response= fetch("http://localhost:5000/api/v1/events/titles")
+  const response= fetch(`${API_URL}/events/titles`)
  
    .then(resp => resp.json())
    .catch((e)=>{
@@ -19,22 +21,22 @@ const getAllNames=()=>{
  }
 
 const getById = (id) => {
-  return  axios.get(API_URL +`eventById?id=${id}` ,{headers:authHeader()});
+  return  axios.get(API_URL +`/eventById?id=${id}` ,{headers:authHeader()});
 };
 const insertEvent = async (data) => {
-  const{result} = await  axios.post(API_URL +`event`,data);
+  const{result} = await  axios.post(API_URL +`/event`,data);
   return result
 };
 
 
 const deleteEvent = (id) => {
-  return axios.delete(API_URL+`event/${id}` ,{headers:authHeader()});
+  return axios.delete(API_URL+`/event/${id}` ,{headers:authHeader()});
 };
 const updateEvent = (id,data) => {
-  return axios.delete(API_URL+`event/${id}`,data);
+  return axios.delete(API_URL+`/event/${id}`,data);
 };
 const getAllEvents=()=>{
-  const fetchPromise=fetch(API_URL+`events/titles`);
+  const fetchPromise=fetch(API_URL+`/events/titles`);
   fetchPromise.then(response => {
     return response.json();
   }).then(events => {
@@ -57,7 +59,7 @@ const currentUserValue=()=>{
   return axios.post(`${API_URL}/me`,{headers:authHeader()})
 }
 const getAllGeneral=()=>{
-  const response= fetch("http://localhost:5000/api/v1/general/events")
+  const response= fetch(`${API_URL}/general/events`)
  
    .then(resp => resp.json())
    .catch((e)=>{
