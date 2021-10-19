@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import MaterialTable from 'material-table'
 import WardService from "../../../../services/ward.service"
+import "../other.css"
 
 
 
@@ -17,9 +18,9 @@ function AllWard() {
   
 
   React.useEffect(()=>{
-    WardService.allWards().then(res=>{
-      console.log("check this ward",res)
-      setData(res.data)
+    WardService.allWards().then(resp=>{
+      console.log("check data",data)
+      setData(resp.data)
     })
   },[]);
 

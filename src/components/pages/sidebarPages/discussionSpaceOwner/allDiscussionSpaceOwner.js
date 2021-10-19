@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './other.css';
+// import './other.css';
 import MaterialTable from 'material-table'
-
+import DiscussionSpaceOwnerService from "../../../../services/discussionSpaceOwner.service"
+import "../other.css"
 
 function DiscussionSpaceOwner() {
 
@@ -10,16 +11,14 @@ function DiscussionSpaceOwner() {
     { title: "ID", field: "ID" },
     { title: "Type", field: "Type" },
 
-  
-  
   ]
-  useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/discussionSpaceOwner")
-      .then(resp => resp.json())
-      .then(resp => {
-        setData(resp.data)
-      })
-  }, [])
+  React.useEffect(()=>{
+    DiscussionSpaceOwnerService.discussionSpaceOwner().then(res=>{
+      console.log("check this discusion space owners",res)
+      setData(res.data)
+    })
+  },[]);
+ 
 
   return (
     <div className="Upper">

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './other.css';
+// import './other.css';
 import MaterialTable from 'material-table'
+import DiscussionSpaceService from "../../../../services/discussions.service"
+import "../other.css"
 
 
 function DiscussionSpaces() {
@@ -26,14 +28,13 @@ function DiscussionSpaces() {
 
   
   ]
-  useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/discussions")
-      .then(resp => resp.json())
-      .then(resp => {
-        setData(resp.data)
-      })
-  }, [])
-
+  
+  React.useEffect(()=>{
+    DiscussionSpaceService.getDiscussionSpace().then(res=>{
+      console.log("check this discusion space",res)
+      setData(res.data)
+    })
+  },[]);
   return (
     <div className="Upper">
       <MaterialTable

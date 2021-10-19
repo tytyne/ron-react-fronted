@@ -1,37 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import './other.css';
-import MaterialTable from 'material-table'
-import PageHeader from "../../Dashboard/pageHeader";
-import BrandingWatermarkIcon from '@material-ui/icons/BrandingWatermark';
+import MaterialTable from 'material-table';
+import FederalService from "../../../../services/federal.service"
 
+const {REACT_APP_BACKEND_URL, REACT_APP_VERSION} = process.env
+const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 function Federal() {
-
   const [data, setData] = useState([])
-  const columns = [
-    { title: "ID", field: "id" },
-    { title: "FC Name", field: "FcName" },
-   
-  ]
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/federals")
-      .then(resp => resp.json())
-      .then(resp => {
-        setData(resp.data)
-      })
+    getFederal()
   }, [])
 
+  const getFederal = () => {
+    FederalService.federal().then(resp=>{
+      setData(resp.data)})
+    }
+
+  
+  const columns = [
+    { title: "FcName", field: "FcName", 
+    validate: rowData => rowData.FcName === undefined || rowData.FcName === "" ? "Required" : true },
+    ]
   return (
-    
-    <div className="Upper">
-       {/* <PageHeader
-                title="Federal constituency"
-                icon={<BrandingWatermarkIcon fontSize="large" />}
-            /> */}
+    <div className="App">
       <MaterialTable
-        title="Federal Constituency"
-        data={data}
+        title="federal constituency"
         columns={columns}
+        data={data}
+        options={{ actionsColumnIndex: -1, addRowPosition: "first" }}
+        editable={{
+          onRowAdd: (newData) =>{
+            console.log(newData)
+            FederalService.storeFederal(newData);
+            window.location.reload()
+          },
+          
+      
+        onRowUpdate: (newData, oldData) => {
+          FederalService.updateFederal(newData,oldData.id)
+          window.location.reload()
+        },
+          
+      
+          onRowDelete: (oldData) => {
+            FederalService.deleteFederal(oldData.id)
+            window.location.reload()
+          },
+       
+        }}
       />
     </div>
   );

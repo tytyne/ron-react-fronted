@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './other.css';
+import '../other.css';
 import MaterialTable from 'material-table'
+import EventHostTypeService from "../../../../services/eventHostType.service"
 
 
 function EventHostType() {
@@ -10,13 +11,12 @@ function EventHostType() {
     { title: "Id", field: "Id" },
     { title: "HostType", field: "HostType" },
   ]
-  useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/eventHostType")
-      .then(resp => resp.json())
-      .then(resp => {
-        setData(resp.data)
-      })
-  }, [])
+  React.useEffect(()=>{
+    EventHostTypeService.EventHosType().then(res=>{
+      console.log("check this discusion event host types",res)
+      setData(res.data)
+    })
+  },[]);
 
   return (
     <div className="Upper">

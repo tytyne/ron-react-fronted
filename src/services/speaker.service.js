@@ -10,7 +10,7 @@ const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 
 const insertSpeaker = async (data) => {
-  return axios.post(API_URL +`/speaker`,data);
+  return axios.post(API_URL +`/speaker`,data, { headers: authHeader() });
   
 };
 

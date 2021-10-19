@@ -111,7 +111,7 @@ const Sider = () => {
           </div>
           <div className="sidebar__logout">
             {/* <i className="fa fa-power-off"></i> */}
-            <a href="/" onClick={logOut()}><DesignIcons.PowerOff/>Log out</a>
+            <a href="/" onClick={()=>logOut()}><DesignIcons.PowerOff/>Log out</a>
           </div>
         </div>
       </div>

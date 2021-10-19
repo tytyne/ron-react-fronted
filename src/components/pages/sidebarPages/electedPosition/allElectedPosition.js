@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './other.css';
 import MaterialTable from 'material-table'
+import ElectedPositionService from "../../../../services/electedPosition.service"
+import "../other.css"
 
 
 function ElectedPosition() {
@@ -14,13 +15,12 @@ function ElectedPosition() {
     { title: "DateCreated", field: "DateCreated" },
   
   ]
-  useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/elected")
-      .then(resp => resp.json())
-      .then(resp => {
-        setData(resp.data)
-      })
-  }, [])
+  React.useEffect(()=>{
+    ElectedPositionService.electedPosition().then(res=>{
+      console.log("check this ward",res)
+      setData(res.data)
+    })
+  },[]);
 
   return (
     <div className="Upper">

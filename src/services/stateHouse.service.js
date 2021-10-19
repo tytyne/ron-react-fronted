@@ -8,7 +8,7 @@ const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 
 const stateHouse = async () => {
-  const { data } = await axios.get(API_URL +`/statehouse/all`);
+  const { data } = await axios.get(API_URL +`/statehouse/all`, { headers: authHeader() });
   return data
 };
 

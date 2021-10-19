@@ -37,16 +37,16 @@ const Login = (props) => {
   const { message } = useSelector(state => state.message);
 
   const dispatch = useDispatch();
-  const togglePasswordVisiblity = () => {
-    if (visibility == "password") {
-      setVisibility("text");
-      setClosedIcon(closeEye)
-    } else {
-      setVisibility("password");
-      setClosedIcon(eye)
+  // const togglePasswordVisiblity = () => {
+  //   if (visibility == "password") {
+  //     setVisibility("text");
+  //     setClosedIcon(closeEye)
+  //   } else {
+  //     setVisibility("password");
+  //     setClosedIcon(eye)
       
-    }
-  };
+  //   }
+  // };
 
   const onChangeEmail = (e) => {
     const email = e.target.value;
@@ -69,7 +69,7 @@ const Login = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(email, password))
         .then(() => {
-          props.history.push("/dashboard");
+          // props.history.push("/dashboard");
           window.location.reload();
         })
         .catch(() => {
@@ -118,8 +118,8 @@ const Login = (props) => {
                                 <label htmlFor="text-password">Password</label>
                       <div className="form-floating mb-3">
                         <div className="flex">
-                        <Input  type={visibility} className="form-control form-input-bg" id="text-password" placeholder="*****" name="password" value={password} onChange={onChangePassword} validations={[required]} />
-                        <i id = 'myEye' onClick={togglePasswordVisiblity}>{closedIcon}</i>
+                        <Input  type="password" className="form-control form-input-bg" id="text-password" placeholder="*****" name="password" value={password} onChange={onChangePassword} validations={[required]} />
+                        {/* <i id = 'myEye' onClick={togglePasswordVisiblity}>{closedIcon}</i> */}
                       
                         </div>
                        

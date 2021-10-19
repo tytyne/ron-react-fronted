@@ -46,7 +46,6 @@ export default function Events() {
 
     const classes = useStyles();
     const [recordForEdit, setRecordForEdit] = useState(null)
-    // const [records, setRecords] = useState(eventService.getAllEvents())
     const [records, setRecords] = useState([])
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
@@ -63,7 +62,7 @@ export default function Events() {
     } = useTable(records, headCells, filterFn);
  
       useEffect(() => {
-        fetch("http://localhost:5000/api/v1/general/events")
+        fetch("http://localhost:5000/v1/general/events")
           .then(resp => resp.json())
           .then(resp => {
             setRecords(resp)

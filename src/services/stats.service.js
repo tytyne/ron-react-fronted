@@ -8,7 +8,7 @@ const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 
 const allStats = async () => {
-  const { data } = await axios.get(API_URL +`/stats`);
+  const { data } = await axios.get(API_URL +`/stats`, { headers: authHeader() });
   return data
 };
 

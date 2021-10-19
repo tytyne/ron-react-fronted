@@ -48,7 +48,7 @@ const getAllEvents=()=>{
 
  }
  const eventTitles = async () => {
-  const { data } = await axios.get(API_URL +`/events/titles`);
+  const { data } = await axios.get(API_URL +`/events/titles`, { headers: authHeader() });
   console.log (data);
   return data
 };

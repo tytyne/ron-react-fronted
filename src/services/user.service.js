@@ -29,7 +29,7 @@ const deleteUser = (id) => {
   return axios.delete(API_URL+`/user/${id}` ,{headers:authHeader()});
 };
 const insertUser = async(data) => {
-  const {result} = await axios.post(API_URL+`/user`,data);
+  const {result} = await axios.post(API_URL+`/user`,data, { headers: authHeader() });
   return result
 };
 const updateUser = (id,data) => {

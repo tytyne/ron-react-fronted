@@ -8,7 +8,7 @@ const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 
 const LGA = async () => {
-  const { data } = await axios.get(API_URL +`/lga/all`);
+  const { data } = await axios.get(API_URL +`/lga/all`, { headers: authHeader() });
   return data
 };
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './other.css';
+import '../other.css';
 import MaterialTable from 'material-table'
+import EventCategoryService from "../../../../services/eventCategory.service"
 
 
 function EventCategory() {
@@ -11,13 +12,12 @@ function EventCategory() {
     { title: "Description", field: "Description" },
   
   ]
-  useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/eventCategories")
-      .then(resp => resp.json())
-      .then(resp => {
-        setData(resp.data)
-      })
-  }, [])
+  React.useEffect(()=>{
+    EventCategoryService.eventCategory().then(res=>{
+      console.log("check this discusion space owners",res)
+      setData(res.data)
+    })
+  },[]);
 
   return (
     <div className="Upper">

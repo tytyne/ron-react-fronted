@@ -8,7 +8,7 @@ const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 
 const allGroups = async () => {
-  const { data } = await axios.get(API_URL +`/groups`);
+  const { data } = await axios.get(API_URL +`/groups`, { headers: authHeader() });
   console.log (data);
   return data
 };

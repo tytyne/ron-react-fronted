@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './other.css';
+// import './other.css';
 import MaterialTable from 'material-table'
+import CountryService from "../../../../services/country.service"
+import "../other.css"
 
 
 function Countries() {
@@ -14,13 +16,12 @@ function Countries() {
   
   
   ]
-  useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/countries")
-      .then(resp => resp.json())
-      .then(resp => {
-        setData(resp.data)
-      })
-  }, [])
+  React.useEffect(()=>{
+    CountryService.countries().then(res=>{
+      console.log("check this senatorial",res)
+      setData(res.data)
+    })
+  },[]);
 
   return (
     <div className="Upper">

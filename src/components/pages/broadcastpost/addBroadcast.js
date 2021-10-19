@@ -5,6 +5,7 @@ import { useForm, Form } from "../../../components/useForm";
 import HostService from "../../../services/hostType.service";
 import GroupService from "../../../services/group.service";
 import broadcastService from "../../../services/broadcast.service";
+import Dropzone from "react-dropzone"
 
 export default function BroadcastForm(props) {
   const initialFValues = {
@@ -15,7 +16,7 @@ export default function BroadcastForm(props) {
     TargetID: 0,
     Status: false,
   };
-
+  const [img,setImg]=useState([])
   const { addOrEdit, recordForEdit } = props;
   const [hosts, setHosts] = useState([]);
   const [groups, setGroups] = useState([]);
@@ -95,9 +96,8 @@ export default function BroadcastForm(props) {
           />
 
           <Controls.Input
-            id="image"
+            id="file"
             type="file"
-            name="image"
             value={values.image}
             onChange={handleInputChange}
            
@@ -132,6 +132,16 @@ export default function BroadcastForm(props) {
           />
 
           <div>
+          <Dropzone onDrop={acceptedFiles => setImg(acceptedFiles)}>
+            {({getRootProps, getInputProps}) => (
+              <section>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  <p>Drag 'n' drop some files here, or click to select files</p>
+                </div>
+              </section>
+            )}
+          </Dropzone>
             <Controls.Button type="submit" text="Submit" />
             <Controls.Button text="Reset" color="default" onClick={resetForm} />
           </div>

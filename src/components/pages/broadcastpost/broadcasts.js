@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import BroadcastForm from "./addBroadcast";
 import PageHeader from "../../../components/Dashboard/pageHeader";
-import PeopleOutlineTwoToneIcon from '@material-ui/icons/PeopleOutlineTwoTone';
 import BrandingWatermarkIcon from '@material-ui/icons/BrandingWatermark';
 import { Paper, makeStyles, TableBody, TableRow, TableCell, Toolbar, InputAdornment } from '@material-ui/core';
 import useTable from "../../../components/useTable";
@@ -61,13 +60,12 @@ export default function Broadcasts() {
         TblPagination,
         recordsAfterPagingAndSorting
     } = useTable(records, headCells, filterFn);
+
+
  
       useEffect(() => {
-        fetch("http://localhost:5000/api/v1/broadcasts")
-          .then(resp => resp.json())
-          .then(resp => {
-            setRecords(resp)
-          })
+       
+        broadcastService.getAllBroadcasts().then((res)=>setRecords(res))
       }, [])
     const handleSearch = e => {
         let target = e.target;
@@ -85,23 +83,11 @@ export default function Broadcasts() {
     const addOrEdit = (broadcast, resetForm) => {
         console.log("check a broadcast",broadcast)
         if (broadcast.Id == null)
-        {
+      
             broadcastService.insertBroadcast(broadcast);
-            console.log("see function");
-            return 
-        }
-            
-         
+          
         else
-        {
-
             broadcastService.updateBroadcast(broadcast.Id,broadcast)
-            console.log("see broadcast",broadcast)
-            console.log("see insert broadcast",broadcastService.insertBroadcast(broadcast))
-            // console.log("update broadcast",broadcastService.updateBroadcast(broadcast))
-            console.log("hello!")
-            return
-        }
         resetForm()
         setRecordForEdit(null)
         setOpenPopup(false)
@@ -125,7 +111,7 @@ export default function Broadcasts() {
         })
         broadcastService.deleteBroadcast(Id);
 
-        setRecords(broadcastService.getAllBroadcasts())
+        setRecords(records)
         setNotify({
             isOpen: true,
             message: 'Deleted Successfully',

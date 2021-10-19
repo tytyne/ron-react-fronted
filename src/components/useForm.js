@@ -6,7 +6,7 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
 
     const [values, setValues] = useState(initialFValues);
     const [errors, setErrors] = useState({});
-    const [selectedFile,setSelectedFile]=useState(null)
+  
 
  
     const handleInputChange = e => {
@@ -20,7 +20,11 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
         if (files && files.length) {
             const upload_file = files[0];
             console.log("check imageeee",upload_file)
-            console.log("check imageeee name",upload_file.name)
+          setValues({
+              ...values,
+              image:value
+          })
+            // return upload_file
            
         }
         if (validateOnChange)
@@ -30,8 +34,7 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
     const resetForm = () => {
         setValues(initialFValues);
         setErrors({})
-        setSelectedFile(null)
-        
+    
     }
 
 
