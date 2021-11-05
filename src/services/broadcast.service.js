@@ -12,17 +12,17 @@ const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 const get = (id) => {
   return  axios.get(API_URL +`/broadcast/${id}`, { headers: authHeader() });
 };
-const insertBroadcast = ({Comment,TargetType,image,TargetID,Status,selectedFile})=> {
+const insertBroadcast = ({Comment,TargetType,image,TargetID,Status})=> {
 
   const formData = new FormData()
-  var imagefile = document.querySelector('#file');
+ 
 
   formData.append("Comment", Comment);
   formData.append("TargetType", TargetType);
-  formData.append("image", imagefile.files[0]);
+  formData.append("image", image.image[0]);
   formData.append("TargetID", TargetID);
   formData.append("Status", Status);
-  console.log("check form data",imagefile.files[0])
+ 
  axios({
    method:"post",
    url:`${API_URL}/broadcast`,

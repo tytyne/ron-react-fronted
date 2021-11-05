@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './other.css';
 import MaterialTable from 'material-table'
+import NominationCategoryService from "../../../services/nominationCat.service"
+import nominationCatService from '../../../services/nominationCat.service';
 
 
 function NominationCategory() {
@@ -15,8 +17,7 @@ function NominationCategory() {
   
   ]
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/nominations")
-      .then(resp => resp.json())
+  nominationCatService.nominationCategory()
       .then(resp => {
         setData(resp.data)
       })

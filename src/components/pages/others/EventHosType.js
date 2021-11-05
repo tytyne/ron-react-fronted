@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './other.css';
 import MaterialTable from 'material-table'
+import EventHostService from "../../../services/eventHostType.service"
 
 
 function EventHostType() {
@@ -11,8 +12,7 @@ function EventHostType() {
     { title: "HostType", field: "HostType" },
   ]
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/eventHostType")
-      .then(resp => resp.json())
+   EventHostService.EventHosType()
       .then(resp => {
         setData(resp.data)
       })

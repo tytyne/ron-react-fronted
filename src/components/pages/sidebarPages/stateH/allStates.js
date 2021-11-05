@@ -22,7 +22,7 @@ function Senatorial() {
     validate: rowData => rowData.ShcName === undefined || rowData.ShcName === "" ? "Required" : true },
     ]
   return (
-    <div className="App">
+    <div className="Upper">
       <MaterialTable
         title="State house constituency"
         columns={columns}

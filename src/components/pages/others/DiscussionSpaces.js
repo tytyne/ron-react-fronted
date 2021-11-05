@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './other.css';
 import MaterialTable from 'material-table'
+import DiscussionSpaceService from "../../../services/discussions.service"
 
 
 function DiscussionSpaces() {
@@ -27,8 +28,7 @@ function DiscussionSpaces() {
   
   ]
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/discussions")
-      .then(resp => resp.json())
+    DiscussionSpaceService.getDiscussionSpace()
       .then(resp => {
         setData(resp.data)
       })

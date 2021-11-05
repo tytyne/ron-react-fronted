@@ -8,18 +8,21 @@ const {REACT_APP_BACKEND_URL, REACT_APP_VERSION} = process.env
 const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 
-const getAllUsers=()=>{
-  const response= fetch(API_URL)
- 
-   .then(resp => resp.json())
-   .catch((e)=>{
-     console.log(e)
-   })
-   console.log(response)
-   return response
-   
- }
 
+ const getAllUsers = async () => {
+  const { data } = await axios.get(API_URL +`/users`, { headers: authHeader() });
+  return data
+};
+
+const deactivateAdmin = async (id) => {
+  const { data } = await axios.put(API_URL +`/disable/admin/${id}`,{ headers: authHeader()});
+  return data
+};
+
+const getAdmins = async () => {
+  return axios.get(API_URL +`/admins`, { headers: authHeader() });
+  
+};
 const get = (id) => {
   return  axios.get(API_URL +`/userById?id=${id}` ,{headers:authHeader()});
 };
@@ -44,12 +47,14 @@ const currentUserValue=()=>{
 }
 
 export default {
+  getAdmins,
   getAllUsers,
   get,
   deleteUser,
   findByInput,
   currentUserValue,
   updateUser,
-  insertUser
+  insertUser,
+  deactivateAdmin
 };
 

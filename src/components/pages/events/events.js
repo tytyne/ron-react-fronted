@@ -4,7 +4,6 @@ import PageHeader from "../../../components/Dashboard/pageHeader";
 import EventIcon from '@material-ui/icons/Event';
 import { Paper, makeStyles, TableBody, TableRow, TableCell, Toolbar, InputAdornment } from '@material-ui/core';
 import useTable from "../../../components/useTable";
-import  eventService from "../../../services/event.service";
 import Controls from "../../../components/controls/Controls";
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
@@ -13,6 +12,7 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import Notification from "../../../components/Notification";
 import ConfirmDialog from "../../../components/ConfirmDialog";
+import EventService from "../../../services/event.service"
 
 
 const useStyles = makeStyles(theme => ({
@@ -62,11 +62,9 @@ export default function Events() {
     } = useTable(records, headCells, filterFn);
  
       useEffect(() => {
-        fetch("http://localhost:5000/v1/general/events")
-          .then(resp => resp.json())
-          .then(resp => {
-            setRecords(resp)
-          })
+        EventService.getAllGeneral().then(resp=>{
+            console.log("check events",resp)
+            setRecords(resp.data)})
       }, [])
     const handleSearch = e => {
         let target = e.target;
@@ -82,10 +80,15 @@ export default function Events() {
 
  
     const addOrEdit = (event, resetForm) => {
-        if (event.id == 0)
-            eventService.insertEvent(event)
+        if (event.id == 0){
+            EventService.insertEvent(event)
+            console.log("check event data",event)
+        }
+           
+           
         else
-            eventService.updateEvent(event)
+            EventService.updateEvent(event.Id,event)
+            
         resetForm()
         setRecordForEdit(null)
         setOpenPopup(false)
@@ -107,8 +110,8 @@ export default function Events() {
             ...confirmDialog,
             isOpen: false
         })
-        console.log(id)
-        eventService.deleteEvent(id);
+        console.log("check this idddd",id)
+        EventService.deleteEvent(id);
       
         setRecords(records)
         setNotify({

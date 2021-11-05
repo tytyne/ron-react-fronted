@@ -3,6 +3,7 @@ import './other.css';
 import MaterialTable from 'material-table'
 import PageHeader from "../../Dashboard/pageHeader";
 import BrandingWatermarkIcon from '@material-ui/icons/BrandingWatermark';
+import FederalService from "../../../services/federal.service"
 
 
 function Federal() {
@@ -14,8 +15,7 @@ function Federal() {
    
   ]
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/federals")
-      .then(resp => resp.json())
+   FederalService.federal()
       .then(resp => {
         setData(resp.data)
       })

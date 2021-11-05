@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table'
 import StateService from "../../../../services/state.service"
 import authHeader from '../../../../services/auth-header';
+import "../other.css"
 
 const {REACT_APP_BACKEND_URL, REACT_APP_VERSION} = process.env
 const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
@@ -13,10 +14,6 @@ function States() {
   }, [])
 
   const getStates = () => {
-    // fetch(API_URL+`/state/all`).then(resp => resp.json())
-    //   .then(resp => {
-    //     // console.log("check this states",resp.data)
-    //       setData(resp.data)})
     StateService.allstates().then(resp=>{
       setData(resp.data)
     })

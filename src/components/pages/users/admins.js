@@ -12,10 +12,13 @@ import AddIcon from '@material-ui/icons/Add';
 import Popup from "../../../components/Popup";
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Notification from "../../../components/Notification";
 import ConfirmDialog from "../../../components/ConfirmDialog";
-import axios from "axios"
-const API_URL="http://localhost:5000/api/v1"
+import UserService from "../../../services/user.service"
+import axios from "axios";
+const {REACT_APP_BACKEND_URL, REACT_APP_VERSION} = process.env
+const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 const useStyles = makeStyles(theme => ({
     pageContent: {
@@ -66,13 +69,11 @@ export default function Admins() {
         recordsAfterPagingAndSorting
     } = useTable(records, headCells, filterFn);
  
-      useEffect(() => {
-        fetch("http://localhost:5000/api/v1/admins")
-          .then(resp => resp.json())
-          .then(resp => {
-            setRecords(resp.adminlist)
+    useEffect(() => {
+        UserService.getAdmins().then(res=>{
+            setRecords(res.data)
           })
-      }, [])
+        },[]);
       
     const handleSearch = e => {
         let target = e.target;
@@ -95,10 +96,7 @@ export default function Admins() {
           
         else
         AdminService.updateAdmin(admin.Id,admin)
-            console.log("see a admin", admin)
-            console.log("see a admin ID", admin.Id)
-            console.log("see insert admin", AdminService.insertAdmin(admin))
-            console.log("see update admin",AdminService.updateAdmin(admin))
+          
         resetForm()
         setRecordForEdit(null)
         setOpenPopup(false)
@@ -115,26 +113,23 @@ export default function Admins() {
         setOpenPopup(true)
     }
 
-    const onDelete = id => {
+    const onDeactivate = id => {
         setConfirmDialog({
             ...confirmDialog,
             isOpen: false
         })
         
-        
-        axios.delete(API_URL+`/admin/${id}`)
+        UserService.deactivateAdmin(id)
         .then((response)=>{
-            console.log(response)
+            console.log("checkkkkk response",response)
         })
         .catch((e)=>{
             console.log(e)
         });
-        setRecords(AdminService.getAllAdmins())
-        console.log("hello",records)
-        console.log("hello",AdminService.getAllAdmins())
+       
         setNotify({
             isOpen: true,
-            message: 'Deleted Successfully',
+            message: 'Activated Successfully',
             type: 'error'
         })
     }
@@ -181,22 +176,24 @@ export default function Admins() {
                                     <TableCell>{item.Status}</TableCell>
                                     <TableCell>{item.CreatedAt}</TableCell>
                                     <TableCell>
-                                        <Controls.ActionButton
+                                        {/* <Controls.ActionButton
                                             color="primary"
                                             onClick={() => { openInPopup(item) }}>
                                             <EditOutlinedIcon fontSize="small" />
-                                        </Controls.ActionButton>
+                                        </Controls.ActionButton> */}
                                         <Controls.ActionButton
                                             color="secondary"
                                             onClick={() => {
                                                 setConfirmDialog({
                                                     isOpen: true,
-                                                    title: 'Are you sure to delete this admin?',
+                                                    title: 'Are you sure to inactivate this admin?',
                                                     subTitle: "You can't undo this operation",
-                                                    onConfirm: () => { onDelete(item.Id) }
+                                                    onConfirm: () => { onDeactivate(item.Id) }
                                                 })
                                             }}>
-                                            <CloseIcon fontSize="small" />
+ 
+                                            <AccountCircleIcon fontSize="small" />
+
                                         </Controls.ActionButton>
                                     </TableCell>
                                 </TableRow>)

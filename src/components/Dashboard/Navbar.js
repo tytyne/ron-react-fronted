@@ -21,6 +21,7 @@ function Navbar() {
               <div class="dropdown-content">
                 <a href="/users">Users</a>
                 <a href="/admins">Admins</a>
+                <a href="/speakers">speakers</a>
               </div>
             </div> 
             

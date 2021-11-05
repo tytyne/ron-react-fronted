@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../other.css';
 import MaterialTable from 'material-table'
-import NotificationService from "../../../../services/notificationType.service"
+import NotificationTypeService from "../../../../services/notificationType.service"
 
 
 function NotificationType() {
@@ -13,7 +13,7 @@ function NotificationType() {
   
   ]
   React.useEffect(()=>{
-    NotificationService.NotificationType().then(res=>{
+    NotificationTypeService.notificationType().then(res=>{
       console.log("check this notification",res)
       setData(res.data)
     })

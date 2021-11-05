@@ -22,26 +22,7 @@ export default function UserForm(props) {
  
   const [submitted, setSubmitted] = useState(false);
   const { addOrEdit, recordForEdit } = props;
-//   const [drops, setDrops] = React.useState([]);
 
-//   const getDropDowns=()=>{
-//     axios.get('http://localhost:5000/api/v1/events/titles')
-//     .then((response)=>{
-//       console.log(response)
-//       const myRespo=response.data
-//       setDrops(myRespo)
-//   }).catch((e)=>{
-//     console.log(e)
-//   })
-// }
-
-
-
-//   React.useEffect(() => {
-//     hostTypeService.eventTitles().then(res => {
-//       setDrops(res.data);
-//     });
-//   }, []);
   
 
   const validate = (fieldValues = values) => {

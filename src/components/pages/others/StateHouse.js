@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './other.css';
 import MaterialTable from 'material-table'
+import StateHouseService from "../../../services/stateHouse.service"
 
 
 function StateHouse() {
@@ -15,8 +16,7 @@ function StateHouse() {
   
   ]
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/statehouse")
-      .then(resp => resp.json())
+   StateHouseService.stateHouse()
       .then(resp => {
         setData(resp.data)
       })

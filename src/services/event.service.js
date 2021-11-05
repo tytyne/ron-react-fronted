@@ -60,13 +60,7 @@ const currentUserValue=()=>{
 }
 const getAllGeneral=()=>{
   const response= fetch(`${API_URL}/general/events`)
- 
-   .then(resp => resp.json())
-   .catch((e)=>{
-     console.log(e)
-   })
-   console.log(response)
-   return response
+  return  axios.get(API_URL+`/general/events` ,{headers:authHeader()});
    
  }
 export default {

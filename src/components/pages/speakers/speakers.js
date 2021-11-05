@@ -14,7 +14,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Notification from "../../../components/Notification";
 import ConfirmDialog from "../../../components/ConfirmDialog";
 import axios from "axios"
-const API_URL="http://localhost:5000/api/v1"
+
 
 const useStyles = makeStyles(theme => ({
     pageContent: {
@@ -54,7 +54,8 @@ export default function Speakers() {
     const [notify, setNotify] = useState({ isOpen: false, message: '', type: '' })
     const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: '', subTitle: '' })
     const [speakers, setSpeakers] = useState([])
-
+    const {REACT_APP_BACKEND_URL, REACT_APP_VERSION} = process.env
+    const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
   
     const {
         TblContainer,
@@ -64,7 +65,7 @@ export default function Speakers() {
     } = useTable(records, headCells, filterFn);
  
       useEffect(() => {
-        fetch("http://localhost:5000/api/v1/speakers")
+        fetch(API_URL+`/api/v1/speakers`)
           .then(resp => resp.json())
           .then(resp => {
             setRecords(resp)

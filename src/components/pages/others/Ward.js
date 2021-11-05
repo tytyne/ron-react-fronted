@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './other.css';
 import MaterialTable from 'material-table'
+import WardService from "../../../services/ward.service"
 
 
 function Ward() {
@@ -12,8 +13,7 @@ function Ward() {
     { title: "Lga", field: "LgaName" },
   ]
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/wards")
-      .then(resp => resp.json())
+    WardService.allWards()
       .then(resp => {
         setData(resp.data)
       })

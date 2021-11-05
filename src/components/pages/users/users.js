@@ -14,7 +14,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import Notification from "../../../components/Notification";
 import ConfirmDialog from "../../../components/ConfirmDialog";
 import axios from "axios"
-const API_URL="http://localhost:5000/api/v1"
+const {REACT_APP_BACKEND_URL, REACT_APP_VERSION} = process.env
+const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 const useStyles = makeStyles(theme => ({
     pageContent: {
@@ -66,13 +67,10 @@ export default function Users() {
     } = useTable(records, headCells, filterFn);
  
       useEffect(() => {
-        fetch("http://localhost:5000/api/v1/users")
-          .then(resp => resp.json())
-          .then(resp => {
-            setRecords(resp)
+        UserService.getAllUsers().then(res=>{
+            setRecords(res)
           })
-      }, [])
-      
+        },[]);
     const handleSearch = e => {
         let target = e.target;
         setFilterFn({

@@ -7,10 +7,10 @@ const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 
 
-const discussionSpaceOwner = async () => {
-  const { data } = await axios.get(API_URL +`/spaceowner/all`, { headers: authHeader() });
+const discussionSpace = async () => {
+  const { data } = await axios.get(API_URL +`/discussions`, { headers: authHeader() });
   return data
 };
 
 
-export default {discussionSpaceOwner}
+export default {discussionSpace}

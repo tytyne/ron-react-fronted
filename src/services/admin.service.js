@@ -9,17 +9,16 @@ const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 
 
-const getAllAdmins=()=>{
-  const response= fetch(`${API_URL}/admins`)
- 
-   .then(resp => resp.json())
-   .catch((e)=>{
-     console.log(e)
-   })
-   console.log(response)
-   return response
-   
- }
+ const getAllAdmins = async() => {
+  const {results} = await axios.get(API_URL +`/admins` ,{headers:authHeader()});
+  return results
+};
+const getAdminMe =async () => {
+  return await axios.get(API_URL+`/admin/me` ,{headers:authHeader()});
+};
+const getAdmin = (id) => {
+  return axios.delete(API_URL+`/admin/${id}` ,{headers:authHeader()});
+};
 
 const get = (id) => {
   return  axios.get(API_URL +`/adminById?id=${id}` ,{headers:authHeader()});
@@ -46,6 +45,8 @@ const currentAdminValue=()=>{
 
 export default {
   getAllAdmins,
+  getAdmin,
+  getAdminMe,
   get,
   deleteAdmin,
   findByInput,

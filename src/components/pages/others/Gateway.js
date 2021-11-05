@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './other.css';
 import MaterialTable from 'material-table'
+import GatewayService from "../../../services/gateway.service"
 
 
 function Gateway() {
@@ -15,8 +16,7 @@ function Gateway() {
   
   ]
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/gateway")
-      .then(resp => resp.json())
+    GatewayService.gateway()
       .then(resp => {
         setData(resp.data)
       })

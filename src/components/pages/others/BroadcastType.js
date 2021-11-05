@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './other.css';
 import MaterialTable from 'material-table'
+import BroadcastTypeService from "../../../services/broadcastType.service"
 
 
 function BroadcastType() {
@@ -15,8 +16,7 @@ function BroadcastType() {
   
   ]
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/broadcastTypes")
-      .then(resp => resp.json())
+    BroadcastTypeService.broadcastType()
       .then(resp => {
         setData(resp.data)
       })
@@ -25,7 +25,7 @@ function BroadcastType() {
   return (
     <div className="Upper">
       <MaterialTable
-        title="Gateway"
+        title="BroadcastType"
         data={data}
         columns={columns}
       />

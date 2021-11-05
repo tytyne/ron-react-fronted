@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './other.css';
 import MaterialTable from 'material-table'
+import DiscussionSpaceOwnerService from "../../../services/discussionSpace.service"
 
 
 function DiscussionSpaceOwner() {
@@ -14,8 +15,7 @@ function DiscussionSpaceOwner() {
   
   ]
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/discussionSpaceOwner")
-      .then(resp => resp.json())
+  DiscussionSpaceOwner.DiscussionSpaceOwner()
       .then(resp => {
         setData(resp.data)
       })

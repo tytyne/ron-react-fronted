@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './other.css';
 import MaterialTable from 'material-table'
+import LgaService from "../../../services/lga.service"
 
 
 function Lga() {
@@ -15,8 +16,7 @@ function Lga() {
   
   ]
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/lga")
-      .then(resp => resp.json())
+  LgaService.LGA()
       .then(resp => {
         setData(resp.data)
       })

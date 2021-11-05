@@ -21,7 +21,7 @@ function NominationCat() {
     validate: rowData => rowData.Description === undefined || rowData.Description === "" ? "Required" : true },
     ]
   return (
-    <div className="App">
+    <div className="Upper">
       <MaterialTable
         title="Nomination category"
         columns={columns}

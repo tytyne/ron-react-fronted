@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './other.css';
 import MaterialTable from 'material-table'
+import StateService from "../../../services/state.service"
 
 
 function States() {
@@ -12,8 +13,7 @@ function States() {
   
   ]
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/states")
-      .then(resp => resp.json())
+  StateService.allstates()
       .then(resp => {
         setData(resp.data)
       })

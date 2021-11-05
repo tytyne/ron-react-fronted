@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './other.css';
 import MaterialTable from 'material-table'
+import NominationTypeService from "../../../services/notificationType.service"
 
 
 function NotificationType() {
@@ -14,8 +15,7 @@ function NotificationType() {
   
   ]
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/notifications")
-      .then(resp => resp.json())
+  NominationTypeService.notificationType()
       .then(resp => {
         setData(resp.data)
       })

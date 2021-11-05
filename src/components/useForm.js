@@ -10,22 +10,25 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
 
  
     const handleInputChange = e => {
-        const { name, value,id ,files} = e.target
-      
+        const { name, value,files,input} = e.target
+        // const upload_file = files[0];
         setValues({
             ...values,
-            [name]: value,
-             
+            [name]:value
+            // upload_file,
         })
+
+
         if (files && files.length) {
             const upload_file = files[0];
-            console.log("check imageeee",upload_file)
-          setValues({
-              ...values,
-              image:value
-          })
-            // return upload_file
-           
+            // console.log("check imageeee",upload_file)
+            setValues({
+                ...values,
+                [name]:files
+            })
+            console.log("check values",values)
+         
+      
         }
         if (validateOnChange)
             validate({ [name]: value })

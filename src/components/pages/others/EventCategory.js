@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './other.css';
 import MaterialTable from 'material-table'
+import EventCategoryService from "../../../services/eventCategory.service"
 
 
 function EventCategory() {
@@ -12,8 +13,7 @@ function EventCategory() {
   
   ]
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/eventCategories")
-      .then(resp => resp.json())
+      EventCategoryService.eventCategory()
       .then(resp => {
         setData(resp.data)
       })

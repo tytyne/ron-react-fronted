@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './other.css';
 import MaterialTable from 'material-table'
+import ElectedPositionService from "../../../services/electedPosition.service"
 
 
 function ElectedPosition() {
@@ -15,8 +16,7 @@ function ElectedPosition() {
   
   ]
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/elected")
-      .then(resp => resp.json())
+    ElectedPositionService.electedPosition()
       .then(resp => {
         setData(resp.data)
       })

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './other.css';
 import MaterialTable from 'material-table'
+import SenatorialService from "../../../services/senatorial.service"
 
 
 function Ward() {
@@ -12,8 +13,7 @@ function Ward() {
   
   ]
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/t1/senetorialdistrict")
-      .then(resp => resp.json())
+  SenatorialService.senatorial()
       .then(resp => {
         setData(resp.data)
       })

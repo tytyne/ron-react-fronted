@@ -8,16 +8,7 @@ const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 
 const federal = async () => {
-  let response = {data:[],error:[], has_errors:false}
    const { data } = await axios.get(API_URL +`/federal/all`, { headers: authHeader()});
-  // console.log("comment ...",data)
-  // try{
-  //   const serveResponse=  await axios.get(API_URL +`/federal/all`, { headers: authHeader()});
-
-  // }
-  // catch(error){
-  // }
-
   return data
 };
 
