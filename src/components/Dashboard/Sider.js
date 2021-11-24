@@ -28,20 +28,23 @@ const Sider = () => {
         <div className="sidebar__menu">
           <div className="sidebar__link active_menu_link">
          
-            <a href="#"> <DesignIcons.Home />Dashboard</a>
-          </div>
-        
-          <div className="sidebar__link">
-            <i className="fa fa-user-circle-o" aria-hidden="true"></i>
-            <a href="/wards"><DesignIcons.Building/>Ward</a>
+            <a href="/dashboard"> <DesignIcons.Home />Dashboard</a>
           </div>
           <div className="sidebar__link">
             <i className="fa fa-user-circle-o" aria-hidden="true"></i>
-            <a href="/states"><DesignIcons.cirle/>States</a>
+            <a href="/about"><DesignIcons.Water/>About Us</a>
+          </div>
+          <div className="sidebar__link">
+            <i className="fa fa-user-circle-o" aria-hidden="true"></i>
+            <a href="/wards"><DesignIcons.Buildingg/>Ward</a>
+          </div>
+          <div className="sidebar__link">
+            <i className="fa fa-user-circle-o" aria-hidden="true"></i>
+            <a href="/states"><DesignIcons.RegPaperPlane/>States</a>
           </div>
           <div className="sidebar__link">
             <i className="fa fa-calendar"></i>
-            <a href="/federals"><DesignIcons.Bell/>Federal Constituency</a>
+            <a href="/federals"><DesignIcons.RegSnowflake/>Federal Constituency</a>
           </div>
           <div className="sidebar__link">
             <i className="fa fa-user-circle-o" aria-hidden="true"></i>
@@ -49,21 +52,21 @@ const Sider = () => {
           </div>
           <div className="sidebar__link">
             <i className="fa fa-user-circle-o" aria-hidden="true"></i>
-            <a href="/nominationsCat"><DesignIcons.Calendar/>Nomination category</a>
+            <a href="/nominationsCat"><DesignIcons.RegMap/>Nomination category</a>
           </div>
           <div className="sidebar__link">
             <i className="fa fa-user-circle-o" aria-hidden="true"></i>
-            <a href="/statehouse"><DesignIcons.Calendar/>State House Constituency</a>
+            <a href="/statehouse"><DesignIcons.Building/>State House Co</a>
           </div>
           
           <div className="sidebar__link">
             <i className="fa fa-user-circle-o" aria-hidden="true"></i>
-            <a href="/lga"><DesignIcons.Calendar/>LGA</a>
+            <a href="/lga"><DesignIcons.XRay/>LGA</a>
           </div>
          
           <div className="sidebar__link">
             <i className="fa fa-user-circle-o" aria-hidden="true"></i>
-            <a href="/gateway"><DesignIcons.Calendar/>Gateway</a>
+            <a href="/gateway"><DesignIcons.WineGlass/>Gateway</a>
           </div>
           {/* <div className="sidebar__link">
             <i className="fa fa-user-circle-o" aria-hidden="true"></i>
@@ -71,19 +74,19 @@ const Sider = () => {
           </div> */}
           <div className="sidebar__link">
             <i className="fa fa-user-circle-o" aria-hidden="true"></i>
-            <a href="/countries"><DesignIcons.Calendar/>Country</a>
+            <a href="/countries"><DesignIcons.Train/>Country</a>
           </div>
           <div className="sidebar__link">
             <i className="fa fa-user-circle-o" aria-hidden="true"></i>
-            <a href="/broadcastType"><DesignIcons.Calendar/>Broadcast Type</a>
+            <a href="/broadcastType"><DesignIcons.Bullhorn/>Broadcast Type</a>
           </div>
           <div className="sidebar__link">
             <i className="fa fa-user-circle-o" aria-hidden="true"></i>
-            <a href="/discussionSpaceOwner"><DesignIcons.Calendar/>Discussion Space Owner</a>
+            <a href="/discussionSpaceOwner"><DesignIcons.Desktop/>Discussion Space Owner</a>
           </div>
           <div className="sidebar__link">
             <i className="fa fa-user-circle-o" aria-hidden="true"></i>
-            <a href="/elected"><DesignIcons.Calendar/>Elected position</a>
+            <a href="/elected"><DesignIcons.Check/>Elected position</a>
           </div>
           <div className="sidebar__link">
             <i className="fa fa-archive"></i>
@@ -91,11 +94,11 @@ const Sider = () => {
           </div>
           <div className="sidebar__link">
             <i className="fa fa-user-circle-o" aria-hidden="true"></i>
-            <a href="/eventHost"><DesignIcons.Calendar/>Event Host Type</a>
+            <a href="/eventHost"><DesignIcons.FileSignature/>Event Host Type</a>
           </div>
           <div className="sidebar__link">
             <i className="fa fa-user-circle-o" aria-hidden="true"></i>
-            <a href="/eventCategory"><DesignIcons.Calendar/>Event Category</a>
+            <a href="/eventCategory"><DesignIcons.Envelope/>Event Category</a>
           </div>
           {/* <div className="sidebar__link">
             <i className="fa fa-video-camera"></i>
@@ -105,10 +108,10 @@ const Sider = () => {
             <i className="fa fa-video-camera"></i>
             <a href="/notificationType"><DesignIcons.Bell/>Notification Type</a>
           </div>
-          <div className="sidebar__link">
+          {/* <div className="sidebar__link">
             <i className="fa fa-video-camera"></i>
             <a href="#"><DesignIcons.Calendar/>Donation Types</a>
-          </div>
+          </div> */}
           <div className="sidebar__logout">
             {/* <i className="fa fa-power-off"></i> */}
             <a href="/" onClick={()=>logOut()}><DesignIcons.PowerOff/>Log out</a>

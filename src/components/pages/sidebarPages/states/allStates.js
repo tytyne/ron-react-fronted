@@ -35,7 +35,8 @@ function States() {
             fetch(API_URL+`/state/store`, {
               method: "POST",
               headers: {
-                'Content-type': "application/json"
+                'Content-type': "application/json",
+                headers: authHeader()
               },
               body: JSON.stringify(newData)
             }).then(resp => resp.json())
@@ -64,7 +65,8 @@ function States() {
             fetch(API_URL+`/state/${oldData.StateID}`, {
               method: "DELETE",
               headers: {
-                'Content-type': "application/json"
+                'Content-type': "application/json",
+                headers: authHeader()
               },
 
             }).then(resp => resp.json())

@@ -8,59 +8,48 @@ const {REACT_APP_BACKEND_URL, REACT_APP_VERSION} = process.env
 const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 
-const getAllNames=()=>{
-  const response= fetch(`${API_URL}/events/titles`)
- 
-   .then(resp => resp.json())
-   .catch((e)=>{
-     console.log(e)
-   })
-   console.log(response)
-   return response
-   
- }
+ const  getAllNames = async () => {
+  const { data } = await axios.get(API_URL +`/events/titles`, { headers: authHeader() });
+  console.log (data);
+  return data
+};
 
-const getById = (id) => {
-  return  axios.get(API_URL +`/eventById?id=${id}` ,{headers:authHeader()});
+const getById =async (id) => {
+  return  await axios.get(API_URL +`/eventById?id=${id}` ,{headers:authHeader()});
 };
 const insertEvent = async (data) => {
-  const{result} = await  axios.post(API_URL +`/event`,data);
+  const{result} = await  axios.post(API_URL +`/event`,data,{headers:authHeader()});
   return result
 };
 
 
-const deleteEvent = (id) => {
-  return axios.delete(API_URL+`/event/${id}` ,{headers:authHeader()});
+const deleteEvent = async(id) => {
+  const {data} = await axios.delete(API_URL+`/events/${id}` ,{headers:authHeader()});
+  return data
 };
-const updateEvent = (id,data) => {
-  return axios.delete(API_URL+`/event/${id}`,data);
+const updateEvent = async (id,data) => {
+  const {result}= await axios.put(API_URL+`/event/${id}`,data,{headers:authHeader()});
+  return result
 };
-const getAllEvents=()=>{
-  const fetchPromise=fetch(API_URL+`/events/titles`);
-  fetchPromise.then(response => {
-    return response.json();
-  }).then(events => {
- 
-    return events.resultData;
-  }).catch((e)=>{
-    console.log(e)
-  })
-
- }
+const getAllEvents = async () => {
+  const { data } = await axios.get(API_URL +`/events/titles`, { headers: authHeader() });
+  console.log (data);
+  return data
+};
  const eventTitles = async () => {
   const { data } = await axios.get(API_URL +`/events/titles`, { headers: authHeader() });
   console.log (data);
   return data
 };
-const findByInput = (input) => {
-  return  axios.get(API_URL+`/eventByInput?input=${input}` ,{headers:authHeader()});
+const findByInput = async (input) => {
+  return  await axios.get(API_URL+`/eventByInput?input=${input}` ,{headers:authHeader()});
 };
-const currentUserValue=()=>{
-  return axios.post(`${API_URL}/me`,{headers:authHeader()})
+const currentUserValue= async()=>{
+  return await axios.post(`${API_URL}/me`,{headers:authHeader()})
 }
-const getAllGeneral=()=>{
-  const response= fetch(`${API_URL}/general/events`)
-  return  axios.get(API_URL+`/general/events` ,{headers:authHeader()});
+const getAllGeneral= async()=>{
+  const {data}= await axios.get(API_URL+`/general/events` ,{headers:authHeader()});
+  return data
    
  }
 export default {

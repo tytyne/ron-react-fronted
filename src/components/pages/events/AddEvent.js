@@ -3,73 +3,80 @@ import "./event.css";
 import { Grid } from "@material-ui/core";
 import Controls from "../../../components/controls/Controls";
 import { useForm, Form } from "../../../components/useForm";
-import DiscussionSpaceService from "../../../services/discussionSpace.service"
+import DiscussionSpaceService from "../../../services/discussionSpace.service";
 import HostTypeService from "../../../services/hostType.service";
-import { v4 as uuidv4 } from 'uuid';
-
-
+import { v4 as uuidv4 } from "uuid";
+// import Moment from 'react-moment';
+// import 'moment-timezone';
+import moment from "moment"
 
 const initialFValues = {
-  Id:uuidv4(),
+  Id:0,
   EventTitle: "",
-  EventStartTime:new Date(),
-  EventDuration:"",
+  EventStartTime:moment(new Date("2021-09-28 7:30:20")).format(),
+  EventDuration: 10,
   EventDescription: "",
   EventStreamEnbedCode: "",
   HostType: "",
-  HostDiscussionSpaceId: "",
+  HostDiscussionSpaceId:0,
+  EventStatus:1
 };
+// const currentDate = new Date()
+
 
 export default function EventForm(props) {
- 
-
-
- 
   const { addOrEdit, recordForEdit } = props;
-  const [space,setSpace]=useState([])
-  const [hosts,setHosts]=useState([])
-
-
-
+  const [space, setSpace] = useState([]);
+  const [hosts, setHosts] = useState([]);
 
   React.useEffect(() => {
-    HostTypeService.getHosts().then(res => {
+    HostTypeService.getHosts().then((res) => {
       setHosts(res.resultData);
     });
   }, []);
 
   React.useEffect(() => {
-    DiscussionSpaceService.discussionSpace().then(res => {
+    DiscussionSpaceService.discussionSpace().then((res) => {
       setSpace(res.resultData);
     });
   }, []);
 
- 
-
-
   const validate = (fieldValues = values) => {
-   
     let temp = { ...errors };
     if ("EventTitle" in fieldValues)
       temp.EventTitle = fieldValues.EventTitle ? "" : "This field is required.";
     if ("EventDescription" in fieldValues)
-    temp.EventDescription = fieldValues.EventDescription ? "" : "This field is required.";
+      temp.EventDescription = fieldValues.EventDescription
+        ? ""
+        : "This field is required.";
 
-      if ("EventStreamEnbedCode" in fieldValues)
-      temp.EventStreamEnbedCode = fieldValues.EventStreamEnbedCode ? "" : "This field is required.";
-    
-    if ("EventStartTime" in fieldValues)
-      temp.EventStartTime = fieldValues.EventStartTime > Date.now() ? "" : " choose the day before today!.";
+    // if ("EventStreamEnbedCode" in fieldValues)
+    //   temp.EventStreamEnbedCode =
+    //     /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(
+    //       fieldValues.EventStreamEnbedCode
+    //     )
+    //       ? ""
+    //       : "The link is required.";
 
-    if ("EventDuration" in fieldValues)
-    temp.EventDuration = fieldValues.EventDuration ? "" : "This field is required.";
-    
-    if ("HostType" in fieldValues)
-      temp.HostType =
-        fieldValues.HostType.length != 0 ? "" : "This field is required.";
-    if ("HostDiscussionSpaceId" in fieldValues)
-      temp.HostDiscussionSpaceId =
-      fieldValues.HostDiscussionSpaceId.length != 0 ? "" : "This field is required.";
+    // if ("EventStartTime" in fieldValues)
+    //   temp.EventStartTime =
+    //     fieldValues.EventStartTime < currentDate
+    //       ? ""
+    //       : " This field is required!";
+
+    // if ("EventDuration" in fieldValues)
+    //   temp.EventDuration = fieldValues.EventDuration
+    //     ? ""
+    //     : "This field is required.";
+
+    // if ("HostType" in fieldValues)
+    //   temp.HostType =
+    //     fieldValues.HostType.length != 0 ? "" : "This field is required.";
+    // if ("HostDiscussionSpaceId" in fieldValues)
+    //   temp.HostDiscussionSpaceId =
+    //     fieldValues.HostDiscussionSpaceId.length != 0
+    //       ? ""
+    //       : "This field is required.";
 
     setErrors({
       ...temp,
@@ -78,36 +85,36 @@ export default function EventForm(props) {
     if (fieldValues == values) return Object.values(temp).every((x) => x == "");
   };
 
-  let { values, setValues, errors, setErrors,handleInputChange,resetForm } =
+  let { values, setValues, errors, setErrors, handleInputChange, resetForm } =
     useForm(initialFValues, true, validate);
 
+  var data = {
+    EventTitle: values.EventTitle,
+    EventStartTime: values.EventStartTime,
+    EventDuration: values.EventDuration,
+    EventDescription: values.EventDescription,
+    EventStreamEnbedCode: values.EventStreamEnbedCode,
+    HostType: values.HostType,
+    HostDiscussionSpaceId: values.HostDiscussionSpaceId,
+    EventStatus:values.EventStatus
+  };
+  console.log("check daaaataaa",data)
 
-    var data = {
-      EventTitle: values.EvenTitle,
-      EventStartTime: values.EventStartTime,
-      EventDuration: values.EventDuration,
-      EventDescription: values.EventDescription,
-      EventStreamEnbedCode: values.EventStreamEnbedCode,
-      HostType: values.HostType,
-      HostDiscussionSpaceId: values.HostDiscussionSpaceId,
-    };
-    console.log("get data",data)
-    
-    
-  
-        const handleSubmit = (e) => {
-          e.preventDefault();
-          if (validate()) {
-            addOrEdit(values, resetForm);
-          }
-        };
-      
-        useEffect(() => {
-          if (recordForEdit != null)
-            setValues({
-              ...recordForEdit,
-            });
-        }, [recordForEdit]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      addOrEdit(values, resetForm);
+      console.log("check validations")
+      console.log("check ... data", values);
+    }
+  };
+
+  useEffect(() => {
+    if (recordForEdit != null)
+      setValues({
+        ...recordForEdit,
+      });
+  }, [recordForEdit]);
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -118,21 +125,21 @@ export default function EventForm(props) {
             name="EventTitle"
             value={values.EventTitle}
             onChange={handleInputChange}
-            error={errors.EventTitle}
+            // error={errors.EventTitle}
           />
-          <Controls.DatePicker
+          <Controls.DateTimePickery
             label="Event Start Time"
             name="EventStartTime"
-            value={values.EventStartTime}
+            value={moment(values.EventStartTime).format()}
             onChange={handleInputChange}
-            error={errors.EventStartTime}
-        />
+            // error={errors.EventSartTime}
+          />
           <Controls.Input
             label="Event Duration"
             name="EventDuration"
-            value={values.EventDuration}
+            value={Number(values.EventDuration)}
             onChange={handleInputChange}
-            error={errors.EventDuration}
+            // error={errors.EventDuration}
           />
           <Controls.Input
             label="Event Description"
@@ -142,7 +149,7 @@ export default function EventForm(props) {
           />
         </Grid>
         <Grid item xs={6}>
-        <Controls.Input
+          <Controls.Input
             label="Event link"
             name="EventStreamEnbedCode"
             value={values.EventStreamEnbedCode}
@@ -154,21 +161,32 @@ export default function EventForm(props) {
             value={values.HostType}
             onChange={handleInputChange}
             options={hosts}
-            error={errors.HostType}
+            // error={errors.HostType}
           />
           <div>
-          <Controls.SelectDiscussion
-            name="HostDiscussionSpaceId"
-            label="Host Discussion Space"
-            value={values.HostDiscussionSpaceId}
-            onChange={handleInputChange}
-            options={space}
-            error={errors.HostDiscussionSpaceId}
-          />
+            {data.HostType == "2" ||
+            data.HostType == "4" ||
+            data.HostType == "" ? (
+              ""
+            ) : (
+              <Controls.SelectDiscussion
+                name="HostDiscussionSpaceId"
+                label="Host Discussion Space"
+                value={values.HostDiscussionSpaceId}
+                onChange={handleInputChange}
+                options={space}
+                error={errors.HostDiscussionSpaceId}
+              />
+            )}
           </div>
-      
-         
-            <div>
+          {/* <Controls.SelectActivation
+            name="EventStatus"
+            label="EventStatus"
+            value={values.EventStatus}
+            onChange={handleInputChange}
+           
+          /> */}
+          <div>
             <Controls.Button type="submit" text="Submit" />
             <Controls.Button text="Reset" color="default" onClick={resetForm} />
           </div>
@@ -176,6 +194,4 @@ export default function EventForm(props) {
       </Grid>
     </Form>
   );
-};
-
-
+}

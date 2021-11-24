@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table'
 import "../other.css"
+import GatewayService from '../../../../services/gateway.service';
 
-const {REACT_APP_BACKEND_URL, REACT_APP_VERSION} = process.env
-const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 function Gateway() {
   const [data, setData] = useState([])
@@ -12,9 +11,9 @@ function Gateway() {
   }, [])
 
   const getPosts = () => {
-    fetch(API_URL+`/gateway/all`).then(resp => resp.json())
-      .then(resp => {
-          setData(resp.data)})
+    GatewayService.gateway().then(res=>{
+      setData(res.data)
+    })
   }
   const columns = [
     { title: "Description", field: "Description", 
@@ -23,50 +22,25 @@ function Gateway() {
   return (
     <div className="Upper">
       <MaterialTable
-        title="State house constituency"
+        title="Gateway"
         columns={columns}
         data={data}
         options={{ actionsColumnIndex: -1, addRowPosition: "first" }}
         editable={{
-          onRowAdd: (newData) => new Promise((resolve, reject) => {
-            //Backend call
-            fetch(API_URL+`/gateway/store`, {
-              method: "POST",
-              headers: {
-                'Content-type': "application/json"
-              },
-              body: JSON.stringify(newData)
-            }).then(resp => resp.json())
-              .then(resp => {
-                            resolve()
-              })
-          }),
-          onRowUpdate: (newData, oldData) => new Promise((resolve, reject) => {
-            //Backend call
-            fetch(API_URL+`/gateway/update/${oldData.GatewayID}`, {
-              method: "PUT",
-              headers: {
-                'Content-type': "application/json"
-              },
-              body: JSON.stringify(newData)
-            }).then(resp => resp.json())
-              .then(resp => {
-                            resolve()
-              })
-          }),
-          onRowDelete: (oldData) => new Promise((resolve, reject) => {
-            //Backend call
-            fetch(API_URL+`/gateway/${oldData.GatewayID}`, {
-              method: "DELETE",
-              headers: {
-                'Content-type': "application/json"
-              },
+          onRowAdd: (newData) => {
+            GatewayService.addGateway(newData)
+            window.location.reload()
 
-            }).then(resp => resp.json())
-              .then(resp => {
-                            resolve()
-              })
-          })
+          },
+          onRowUpdate: (newData, oldData) => {
+            GatewayService.updateGateway(oldData.GatewayID,newData)
+            window.location.reload()
+          },
+          onRowDelete: (oldData) => {
+            console.log("check oldataa",oldData)
+            GatewayService.deleteGateway(oldData.GatewayID)
+            window.location.reload()
+          },
         }}
       />
     </div>

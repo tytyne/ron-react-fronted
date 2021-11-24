@@ -1,7 +1,10 @@
 import React from 'react';
 import "./sidebar.css"
 import authService from '../../services/auth.service';
-import {FaHome,FaBuilding,FaWineGlass,FaBookmark,FaCalendar,FaBell,FaCircle,FaTractor,FaTrain,FaSquare,FaPowerOff,FaUser,FaUserCircle, FaVideo} from "react-icons/fa"
+import {FaHome,FaBuilding,FaWineGlass,FaRegCommentAlt,FaMoneyBill,FaNewspaper,FaXRay,
+  FaBookmark,FaCalendar,FaBell,FaCircle,FaBullhorn,FaCheck,FaEnvelope,FaFileSignature,
+  FaTractor,FaTrain,FaSquare,FaPowerOff,FaDesktop,FaRegMap,FaRegPaperPlane,FaRegSnowflake,
+  FaUser,FaUserCircle, FaVideo,FaRegSun,FaRegBuilding} from "react-icons/fa"
 import { IconContext } from "react-icons";
 import styled from "styled-components";
 
@@ -10,10 +13,67 @@ const Home  = styled(FaHome)`
   padding-right:2%;
  
 `;
-// const CaretDown  = styled(FaCaretDown)`
-//   padding-right:2%;
+
+const Water  = styled(FaRegSun)`
+  padding-right:2%;
  
-// `;
+`;
+const Buildingg  = styled(FaRegBuilding)`
+  padding-right:2%;
+ 
+`;
+const RegPaperPlane  = styled(FaRegPaperPlane)`
+  padding-right:2%;
+ 
+`;
+
+const RegSnowflake  = styled(FaRegSnowflake)`
+  padding-right:2%;
+ 
+`;
+const RegMap  = styled(FaRegMap)`
+  padding-right:2%;
+ 
+`;
+const Desktop  = styled(FaDesktop)`
+  padding-right:2%;
+ 
+`;
+
+const FileSignature  = styled(FaFileSignature)`
+  padding-right:2%;
+ 
+`;
+const Envelope  = styled(FaEnvelope)`
+  padding-right:2%;
+ 
+`;
+const RegCommentAlt  = styled(FaRegCommentAlt)`
+  padding-right:2%;
+ 
+`;
+const Check  = styled(FaCheck)`
+  padding-right:2%;
+ 
+`;
+const Bullhorn  = styled(FaBullhorn)`
+  padding-right:2%;
+ 
+`;
+const MoneyBill  = styled(FaMoneyBill)`
+  padding-right:2%;
+ 
+`;
+
+const XRay  = styled(FaXRay)`
+  padding-right:2%;
+ 
+`;
+
+const Newspaper  = styled(FaNewspaper)`
+  padding-right:2%;
+ 
+`;
 const Building  = styled(FaBuilding)`
   padding-right:2%;
  
@@ -83,9 +143,10 @@ const BuildingColor  = styled(FaBuilding)`
 
 
 export default{
-    Home,Building,WineGlass,Bookmark,
-    Calendar,Bell,cirle,Tractor,Train,
-    Square,PowerOff,User,VideoColor,UserColor,
-    CalendarColor,VideoColor,BuildingColor
+    Home,Building,WineGlass,Bookmark,Envelope,RegSnowflake,
+    Calendar,Bell,cirle,Tractor,Train,FileSignature,RegPaperPlane,
+    Square,PowerOff,User,VideoColor,UserColor,Buildingg,
+    CalendarColor,VideoColor,BuildingColor,MoneyBill,
+    XRay,RegCommentAlt,Newspaper,Bullhorn,Check,Desktop,RegMap,Water
 }
 

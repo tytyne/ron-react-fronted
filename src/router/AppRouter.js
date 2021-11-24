@@ -15,7 +15,7 @@ import State from "../components/pages/sidebarPages/states/allStates";
 import Federal from "../components/pages/sidebarPages/federal/allFederal";
 import Senaterial from "../components/pages/sidebarPages/senatorial/allSenatorial";
 import NominationCategory from "../components/pages/sidebarPages/nominationCat/allnominationCat";
-import Statehouse from "../components/pages/sidebarPages/stateH/allStates";
+import Statehouse from "../components/pages/sidebarPages/stateH/allStateHouse";
 import Lga from "../components/pages/sidebarPages/LGA/allLga";
 import Gateway from "../components/pages/sidebarPages/gateway/allGateway";
 import Country from "../components/pages/sidebarPages/country/allCountries";
@@ -26,6 +26,8 @@ import DiscussionSpace from "../components/pages/sidebarPages/discussionSpaces/a
 import EventHost from "../components/pages/sidebarPages/eventHostType/allEventHostType";
 import EventCategory from "../components/pages/sidebarPages/eventCategory/allEventCategory";
 import NotificationType from "../components/pages/sidebarPages/notificationType/allNotificationType";
+import Donation from "../components/pages/sidebarPages/donations/allDonations";
+import About from "../components/pages/sidebarPages/about/about"
 import ProtectedRoute from "../helpers/protectRoute";
 
 const AppRouter = () => {
@@ -37,7 +39,7 @@ const AppRouter = () => {
           <Route path="/dashboard">
             <MainContent />
           </Route>
-
+          <ProtectedRoute exact path="/about" component={About} />
           <ProtectedRoute exact path="/users"  component={Users}/>
           <ProtectedRoute exact path="/admins" component={Admins} />
           <ProtectedRoute exact path="/broadcasts" component={Broadcast} />
@@ -82,6 +84,11 @@ const AppRouter = () => {
             exact
             path="/notificationType"
             component={NotificationType}
+          />
+           <ProtectedRoute
+            exact
+            path="/donations"
+            component={Donation}
           />
         </Appshell>
       </Switch>

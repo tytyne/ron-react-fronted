@@ -12,5 +12,17 @@ const nominationCategory = async () => {
   return data
 };
 
+const addNominationCategory = async (data) => {
+  const { result } = await axios.post(API_URL +`/nominationcategory/store`,data, { headers: authHeader() });
+  return result
+};
+const updateNominationCategory = async (id,data) => {
+  const {result} = await axios.put(API_URL +`/nominationcategory/update/${id}`,data, { headers: authHeader() });
+  return result
+};
+const deleteNominationCategory = async (id) => {
+  const { result } = await axios.delete(API_URL +`nominationcategory/${id}`, { headers: authHeader() });
+  return result
+};
 
-export default {nominationCategory}
+export default {nominationCategory,addNominationCategory,updateNominationCategory,deleteNominationCategory}

@@ -8,8 +8,10 @@ import SelectDiscussion from "./SelectDiscussion";
 import SelectStatus from "./SelectStatus";
 import Checkbox from "./Checkbox";
 import DatePicker from "./DatePicker";
+import DateTimePickery from "./DateTimePickery"
 import Button from "./Button";
 import ActionButton from "./ActionButton";
+import SelectActivation from "./selectActivation"
 
 const Controls = {
     Input,
@@ -23,7 +25,9 @@ const Controls = {
     Checkbox,
     DatePicker,
     Button,
-    ActionButton
+    ActionButton,
+    DateTimePickery,
+    SelectActivation
 }
 
 export default Controls;

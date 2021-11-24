@@ -63,8 +63,7 @@ export default function Events() {
  
       useEffect(() => {
         EventService.getAllGeneral().then(resp=>{
-            console.log("check events",resp)
-            setRecords(resp.data)})
+            setRecords(resp)})
       }, [])
     const handleSearch = e => {
         let target = e.target;
@@ -73,21 +72,24 @@ export default function Events() {
                 if (target.value == "")
                     return items;
                 else
-                    return items.filter(x => x.Name.toLowerCase().includes(target.value))
+                    return items.filter(x => x.EventTitle.toLowerCase().includes(target.value))
             }
         })
     }
 
  
     const addOrEdit = (event, resetForm) => {
-        if (event.id == 0){
-            EventService.insertEvent(event)
-            console.log("check event data",event)
-        }
-           
+        console.log("check event",event)
+        if (event.Id == 0)
+       
+            EventService.insertEvent(event).then(res=>{
+                console.log("check response",res)
+            })
            
         else
             EventService.updateEvent(event.Id,event)
+            console.log("check event",event.Id) 
+            window.location.reload()
             
         resetForm()
         setRecordForEdit(null)
@@ -105,13 +107,19 @@ export default function Events() {
         setOpenPopup(true)
     }
 
-    const onDelete = id => {
+    const onDelete = Id => {
         setConfirmDialog({
             ...confirmDialog,
             isOpen: false
         })
-        console.log("check this idddd",id)
-        EventService.deleteEvent(id);
+        console.log("check this idddd",Id)
+        EventService.deleteEvent(Id).then((response)=>{
+            console.log("checkkkkk response",response)
+        })
+        .catch((e)=>{
+            console.log(e)
+        });
+      
       
         setRecords(records)
         setNotify({
@@ -154,7 +162,7 @@ export default function Events() {
                     <TableBody>
                         {
                             recordsAfterPagingAndSorting().map((item,index) =>
-                                (<TableRow key={item.id}>
+                                (<TableRow key={item.Id}>
                                      <TableCell>{index+1}</TableCell>
                                     <TableCell>{item.EventTitle}</TableCell>
                                     <TableCell>{item.EventDuration}</TableCell>
@@ -173,7 +181,7 @@ export default function Events() {
                                                     isOpen: true,
                                                     title: 'Are you sure to delete this record?',
                                                     subTitle: "You can't undo this operation",
-                                                    onConfirm: () => { onDelete(item.id) }
+                                                    onConfirm: () => { onDelete(item.Id) }
                                                 })
                                             }}>
                                             <CloseIcon fontSize="small" />

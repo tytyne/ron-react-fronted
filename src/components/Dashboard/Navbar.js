@@ -21,7 +21,7 @@ function Navbar() {
               <div class="dropdown-content">
                 <a href="/users">Users</a>
                 <a href="/admins">Admins</a>
-                <a href="/speakers">speakers</a>
+                {/* <a href="/speakers">speakers</a> */}
               </div>
             </div> 
             
@@ -64,7 +64,7 @@ function Navbar() {
               <FaCaretDown/>
               </button>
               <div class="dropdown-content">
-                <a href="#">Donations</a>
+                <a href="/donations">Donations</a>
                 <a href="#">Donation Transactions</a>
                 <a href="#">Payment</a> 
                

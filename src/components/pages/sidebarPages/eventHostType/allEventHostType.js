@@ -14,7 +14,7 @@ function EventHostType() {
   React.useEffect(()=>{
     EventHostTypeService.EventHosType().then(res=>{
       console.log("check this discusion event host types",res)
-      setData(res.data)
+      setData(res.resultData)
     })
   },[]);
 

@@ -44,7 +44,7 @@ function Federal() {
       
           onRowDelete: (oldData) => {
             FederalService.deleteFederal(oldData.id)
-            window.location.reload()
+            // window.location.reload()
           },
        
         }}

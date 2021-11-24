@@ -1,8 +1,8 @@
 import React from 'react'
-import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
+import { MuiPickersUtilsProvider, KeyboardDateTimePicker } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-
-export default function DatePicker(props) {
+import moment from "moment"
+export default function DateTimePickery(props) {
 
     const { name, label, value, onChange } = props
 
@@ -15,14 +15,14 @@ export default function DatePicker(props) {
 
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker disableToolbar variant="inline" inputVariant="outlined"
+            <KeyboardDateTimePicker disableToolbar variant="inline" inputVariant="outlined"
                 label={label}
-                format="yyy-mm-dd"
                 name={name}
                 value={value}
-                onChange={date =>onChange(convertToDefEventPara(name,date))}
+                onChange={date =>onChange(convertToDefEventPara(name,moment(date).format()))}
 
             />
+            
         </MuiPickersUtilsProvider>
     )
 }

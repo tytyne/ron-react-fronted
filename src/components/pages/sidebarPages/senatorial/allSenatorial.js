@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table'
 import "../other.css"
+import SenatorialService from "../../../../services/senatorial.service"
 
 const {REACT_APP_BACKEND_URL, REACT_APP_VERSION} = process.env
 const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
@@ -12,10 +13,10 @@ function Senatorial() {
   }, [])
 
   const getPosts = () => {
-    fetch(API_URL+`/senatorial/all`).then(resp => resp.json())
-      .then(resp => {
-        // console.log("check this states",resp.data)
-          setData(resp.data)})
+    SenatorialService.senatorial().then(resp=>{
+      setData(resp.data)
+    })
+      
   }
   const columns = [
     { title: "SDName", field: "SDName", 
@@ -29,45 +30,19 @@ function Senatorial() {
         data={data}
         options={{ actionsColumnIndex: -1, addRowPosition: "first" }}
         editable={{
-          onRowAdd: (newData) => new Promise((resolve, reject) => {
-            //Backend call
-            fetch(API_URL+`/senatorial/store`, {
-              method: "POST",
-              headers: {
-                'Content-type': "application/json"
-              },
-              body: JSON.stringify(newData)
-            }).then(resp => resp.json())
-              .then(resp => {
-                            resolve()
-              })
-          }),
-          onRowUpdate: (newData, oldData) => new Promise((resolve, reject) => {
-            //Backend call
-            fetch(API_URL+`/senatorial/update/${oldData.id}`, {
-              method: "PUT",
-              headers: {
-                'Content-type': "application/json"
-              },
-              body: JSON.stringify(newData)
-            }).then(resp => resp.json())
-              .then(resp => {
-                            resolve()
-              })
-          }),
-          onRowDelete: (oldData) => new Promise((resolve, reject) => {
-            //Backend call
-            fetch(API_URL+`/senatorial/${oldData.id}`, {
-              method: "DELETE",
-              headers: {
-                'Content-type': "application/json"
-              },
-
-            }).then(resp => resp.json())
-              .then(resp => {
-                            resolve()
-              })
-          })
+          onRowAdd: (newData) => {
+            SenatorialService.addSenatorial(newData)
+            window.location.reload()
+          },
+        
+          onRowUpdate: (oldData,newData) => {
+            SenatorialService.updateSenatorial(oldData.id,newData)
+            window.location.reload()
+          },
+          onRowDelete: (oldData) => {
+            SenatorialService.deleteSenatorial(oldData.id)
+            window.location.reload()
+          }
         }}
       />
     </div>

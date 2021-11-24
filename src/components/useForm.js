@@ -26,7 +26,7 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
                 ...values,
                 [name]:files
             })
-            console.log("check values",values)
+            
          
       
         }

@@ -5,6 +5,9 @@ import DesignIcons from "../../Dashboard/icons"
 import Stats from "./stats"
 import TopCard from "./TopCard"
 import "./home.css"
+import "./stylesheet.css";
+import PostTemplate from "./PostReport"
+import MapTemplate from "./Map"
 const MainContent = () => {
   return ( 
     <>
@@ -14,11 +17,14 @@ const MainContent = () => {
           <div className="charts">
             <div className="charts__left">
               <div className="charts__left__title">
-                <div>
-                  <h1>Daily Reports</h1>
-               
-                </div>
-                <DesignIcons.UserColor/>
+                  
+                <div id="mapContainer">
+                <p>users names, activities and locations</p>
+                  <div id="mapClipPath">
+                  <MapTemplate/>
+                  </div>
+                  </div>
+                {/* <DesignIcons.UserColor/> */}
               </div>
               <div id="chart"></div>
             </div>
@@ -41,35 +47,14 @@ const MainContent = () => {
             <div className="charts__left">
               <div className="charts__left__title">
                 <div>
-                  <h1>Posts Reports</h1>
+                  <h1>FeedPosts Reports</h1>
                   <p>Names,comments,likes</p>
                 </div>
                 <DesignIcons.User/>
               </div>
             
-                        
-            <table>
-              <tr>
-                <th>Title</th>
-                
-                <th>postedBy</th>
-                <th>Comments</th>
-                <th>likes</th>
-              </tr>
-              <tr>
-                <td>Nigerian Population</td>
-                <td>Florentine</td>
-                <td>34</td>
-                <td>23</td>
-              </tr>
-              <tr>
-                <td>Nigerian Population</td>
-                <td>Florentine</td>
-                <td>34</td>
-                <td>23</td>
-              </tr>
-            </table>
-
+              <PostTemplate/>         
+           
         
             </div>
 

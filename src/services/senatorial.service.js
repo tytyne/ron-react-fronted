@@ -12,5 +12,20 @@ const senatorial = async () => {
   return data
 };
 
+const addSenatorial = async (data) => {
+  const { result } = await axios.post(API_URL +`/senatorial/store`,data, {headers: authHeader()});
+  return result
+};
 
-export default {senatorial}
+const updateSenatorial = async (id,data) => {
+  const { result } = await axios.put(API_URL +`/senatorial/update/${id}`,data, {headers: authHeader()});
+  return result
+};
+
+const deleteSenatorial = async (id) => {
+  const { data } = await axios.delete(API_URL +`/senatorial/${id}`, {headers: authHeader()});
+  return data
+};
+
+
+export default {senatorial,addSenatorial,updateSenatorial,deleteSenatorial}
