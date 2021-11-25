@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-// import './other.css';
+import React, { useState} from 'react';
 import MaterialTable from 'material-table'
 import DonationService from "../../../../services/donation.service"
 import "../other.css"
@@ -30,7 +29,6 @@ function Donations() {
   },[]);
   React.useEffect(()=>{
     DonationService.success().then(res=>{
-      console.log("check this sucess",res.data[0].Total)
       setSuc(res.data[0].Total)
     })
   },[]);

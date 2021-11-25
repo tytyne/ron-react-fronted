@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import FederalService from "../../../../services/federal.service"
 
-const {REACT_APP_BACKEND_URL, REACT_APP_VERSION} = process.env
-const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 function Federal() {
   const [data, setData] = useState([])

@@ -1,24 +1,16 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
-// import AdminForm from "./addAdmin";
+import React, { useState, useEffect} from "react";
 import PageHeader from "../../../components/Dashboard/pageHeader";
 import PeopleOutlineTwoToneIcon from '@material-ui/icons/PeopleOutlineTwoTone';
 import { Paper, makeStyles, TableBody, TableRow, TableCell, Toolbar, InputAdornment } from '@material-ui/core';
 import useTable from "../../../components/useTable";
 import  AdminService from "../../../services/admin.service";
-
 import Controls from "../../../components/controls/Controls";
 import { Search } from "@material-ui/icons";
-import AddIcon from '@material-ui/icons/Add';
-import Popup from "../../../components/Popup";
-import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import CloseIcon from '@material-ui/icons/Close';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Notification from "../../../components/Notification";
 import ConfirmDialog from "../../../components/ConfirmDialog";
 import UserService from "../../../services/user.service"
-import axios from "axios";
-const {REACT_APP_BACKEND_URL, REACT_APP_VERSION} = process.env
-const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
+
 
 const useStyles = makeStyles(theme => ({
     pageContent: {

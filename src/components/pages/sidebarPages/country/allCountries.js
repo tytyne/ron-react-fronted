@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-// import './other.css';
+import React, { useState} from 'react';
 import MaterialTable from 'material-table'
 import CountryService from "../../../../services/country.service"
 import "../other.css"

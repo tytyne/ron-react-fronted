@@ -82,7 +82,7 @@ export default function EventForm(props) {
       ...temp,
     });
 
-    if (fieldValues == values) return Object.values(temp).every((x) => x == "");
+    if (fieldValues === values) return Object.values(temp).every((x) => x === "");
   };
 
   let { values, setValues, errors, setErrors, handleInputChange, resetForm } =
@@ -164,9 +164,9 @@ export default function EventForm(props) {
             // error={errors.HostType}
           />
           <div>
-            {data.HostType == "2" ||
-            data.HostType == "4" ||
-            data.HostType == "" ? (
+            {data.HostType === "2" ||
+            data.HostType === "4" ||
+            data.HostType === "" ? (
               ""
             ) : (
               <Controls.SelectDiscussion

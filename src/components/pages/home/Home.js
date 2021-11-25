@@ -1,5 +1,4 @@
 import React from 'react';
-// import 'font-awesome/css/font-awesome.min.css';
 import HomeHeader from './HomeHeader';
 import DesignIcons from "../../Dashboard/icons"
 import Stats from "./stats"

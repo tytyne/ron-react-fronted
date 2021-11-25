@@ -9,7 +9,7 @@ import eventService from "../../../services/event.service";
 
 export default function SpeakerForm(props) {
   const initialFValues = {
-    Id: null,
+    Id:0,
     Email:'',
     LiveStreamEventID:'',
     Name:'',
@@ -60,7 +60,7 @@ export default function SpeakerForm(props) {
       ...temp,
     });
 
-    if (fieldValues == values) return Object.values(temp).every((x) => x == "");
+    if (fieldValues === values) return Object.values(temp).every((x) => x === "");
   };
 
   let { values, setValues, errors, setErrors,handleInputChange,resetForm } =

@@ -1,11 +1,9 @@
-import React from 'react';
+
 import "./sidebar.css"
-import authService from '../../services/auth.service';
 import {FaHome,FaBuilding,FaWineGlass,FaRegCommentAlt,FaMoneyBill,FaNewspaper,FaXRay,
   FaBookmark,FaCalendar,FaBell,FaCircle,FaBullhorn,FaCheck,FaEnvelope,FaFileSignature,
   FaTractor,FaTrain,FaSquare,FaPowerOff,FaDesktop,FaRegMap,FaRegPaperPlane,FaRegSnowflake,
   FaUser,FaUserCircle, FaVideo,FaRegSun,FaRegBuilding} from "react-icons/fa"
-import { IconContext } from "react-icons";
 import styled from "styled-components";
 
 

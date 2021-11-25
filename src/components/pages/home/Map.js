@@ -11,7 +11,14 @@ import axios from "axios";
 import "./stylesheet.css";
 import UserActivityService from "../../../services/userActivity.service"
 
-
+// const {GOOGLE_API,GOOGLE_KEY} = process.env
+// console.log("check google api",GOOGLE_API)
+// console.log("check google api key",GOOGLE_KEY)
+// console.log("googleee",process.env.GOOGLE_API)
+// console.log("googleee",process.env.GOOGLE_KEY)
+// const check=`${GOOGLE_KEY}`
+// console.log("check check",check)
+const {REACT_APP_GOOGLE_KEY} = process.env
 function MapComponent() {
     const [selectedProperty, setSelectedProperty] = useState(null);
     const [activity,setActivity]=useState([])
@@ -24,13 +31,12 @@ function MapComponent() {
       useEffect(async() => {
        
         const response = await  UserActivityService.activities()
-        // console.log("check 222222",response.data)
         setActivity(response.data.filter(e=>e.UserActivityIP!="127.0.0.1"))
         console.log("check updated data",response.data)
       
     }, []);
 
-    useEffect(() =>{
+    useEffect(async() =>{
         activity.map(async(el,index) => {
             
             
@@ -45,8 +51,7 @@ function MapComponent() {
                 // console.log("deborah", temp)
           
             }
-            
-        
+    
               
           });
     }, [activity])
@@ -86,7 +91,6 @@ function MapComponent() {
                 >
                     <div>
                         <h4>{selectedProperty.Description}</h4>
-                        {/* <h4>{selectedProperty.activity}</h4> */}
                     </div>
                 </InfoWindow>
             )}
@@ -106,7 +110,7 @@ function Map() {
     return (
 
    <WrappedMap 
-            googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyArVMsjN8_BgvEg-zwQ0gml_85P0_tUMJg`}
+            googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${REACT_APP_GOOGLE_KEY}`}
             loadingElement={<div style={{ height:"100%"}} />}
             containerElement={<div style={{ height:"100%"}} />}
             mapElement={<div style={{ height:"100%"}} />}

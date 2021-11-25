@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import '../other.css';
 import MaterialTable from 'material-table'
 import EventCategoryService from "../../../../services/eventCategory.service"

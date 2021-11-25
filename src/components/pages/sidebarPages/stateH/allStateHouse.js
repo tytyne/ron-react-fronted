@@ -4,8 +4,6 @@ import "../other.css"
 import StateHouseService from "../../../../services/stateHouse.service"
 import stateHouseService from '../../../../services/stateHouse.service';
 
-const {REACT_APP_BACKEND_URL, REACT_APP_VERSION} = process.env
-const API_URL =`${REACT_APP_BACKEND_URL}/${REACT_APP_VERSION}`
 
 function Statehouse() {
   const [data, setData] = useState([])

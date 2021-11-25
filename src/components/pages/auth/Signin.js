@@ -7,13 +7,11 @@ import "./login.css"
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import {FaEye,FaEyeSlash} from "react-icons/fa"
 import circleImage from "../../../assets/pictures/image.png"
 
 
 
-const eye = <FaEye/>;
-const closeEye=<FaEyeSlash/>
+
 
 const required = (value) => {
   if (!value) {
@@ -29,25 +27,11 @@ const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const [visibility, setVisibility] = useState("password");
-  const [closedIcon,setClosedIcon]=useState(eye)
-  
   const { isLoggedIn } = useSelector(state => state.auth);
   const { message } = useSelector(state => state.message);
 
   const dispatch = useDispatch();
-  // const togglePasswordVisiblity = () => {
-  //   if (visibility == "password") {
-  //     setVisibility("text");
-  //     setClosedIcon(closeEye)
-  //   } else {
-  //     setVisibility("password");
-  //     setClosedIcon(eye)
-      
-  //   }
-  // };
-
+ 
   const onChangeEmail = (e) => {
     const email = e.target.value;
     setEmail(email);
@@ -106,30 +90,22 @@ const Login = (props) => {
             <div className="container">
                 <div id="login-row" className="row justify-content-center align-items-center">
                     <div id="login-column">
-                        <div id="login-box" >
+                      <div id="login-box" >
                            
-                            <Form onSubmit={handleLogin} ref={form} className="form-horizontal mt-4 pt-4 needs-validation" id="login-form">
-                                <h4 className="text-left">Sign In</h4>
-                                <div className="form-group">
-                                    <label htmlFor="email" >Email Address</label>
-                                   
-                                    <Input type="email" className="form-control form-input-bg" id="tb-email" placeholder="name@example.com" name="email" value={email} onChange={onChangeEmail} validations={[required]} />
-                                </div>
-                                <label htmlFor="text-password">Password</label>
+                      <Form onSubmit={handleLogin} ref={form} className="form-horizontal mt-4 pt-4 needs-validation" id="login-form">
+                      <h4 className="text-left">Sign In</h4>
+                      <div className="form-group">
+                          <label htmlFor="email" >Email Address</label>
+                          <Input type="email" className="form-control form-input-bg" id="tb-email" placeholder="name@example.com" name="email" value={email} onChange={onChangeEmail} validations={[required]} />
+                      </div>
+                      <label htmlFor="text-password">Password</label>
                       <div className="form-floating mb-3">
                         <div className="flex">
                         <Input  type="password" className="form-control form-input-bg" id="text-password" placeholder="*****" name="password" value={password} onChange={onChangePassword} validations={[required]} />
-                        {/* <i id = 'myEye' onClick={togglePasswordVisiblity}>{closedIcon}</i> */}
-                      
                         </div>
-                       
-                
-                       
                       </div>
-                                <div class="form-group  text-right">
-        
-                                  
-                                    <div className="d-flex align-items-stretch button-group mt-4 pt-2">
+                      <div class="form-group  text-right">
+                      <div className="d-flex align-items-stretch button-group mt-4 pt-2">
 
                         <button  className="btn btn-info btn-lg px-4 button " disabled={loading}>
                           {loading && (
@@ -147,12 +123,12 @@ const Login = (props) => {
                       )}
                       <CheckButton style={{ display: "none" }} ref={checkBtn} />
                                     
-                                </div>
-                                <div id="forgot-link" class="text-left">
-                                    <a href="#" >Forgot password?</a>
-                                </div>
+                    </div>
+                    <div id="forgot-link" class="text-left">
+                        <a href="#" >Forgot password?</a>
+                    </div>
 
-                            </Form>
+                    </Form>
                         </div>
                     </div>
                 </div>
