@@ -2,6 +2,7 @@ import React from "react";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Events from "../components/pages/events/events";
+import GeneralEvents from "../components/pages/events/GeneralEvent"
 import SignUp from "../components/pages/auth/Signin";
 import Users from "../components/pages/users/users";
 import Broadcast from "../components/pages/broadcastpost/broadcasts";
@@ -29,23 +30,27 @@ import NotificationType from "../components/pages/sidebarPages/notificationType/
 import Donation from "../components/pages/sidebarPages/donations/allDonations";
 import About from "../components/pages/sidebarPages/about/about"
 import ProtectedRoute from "../helpers/protectRoute";
+import NotFound from "../components/NotFound"
+import NotAuthorized from "../components/Unauthorised"
 
 const AppRouter = () => {
   return (
     <Router>
       <Switch>
         <Route path="/" exact component={SignUp} />
+      
         <Appshell>
-          <Route path="/dashboard">
+          <Route exact path="/dashboard" >
             <MainContent />
           </Route>
+          {/* <ProtectedRoute component={NotFound} /> */}
           <ProtectedRoute exact path="/about" component={About} />
           <ProtectedRoute exact path="/users"  component={Users}/>
           <ProtectedRoute exact path="/admins" component={Admins} />
           <ProtectedRoute exact path="/broadcasts" component={Broadcast} />
           <ProtectedRoute exact path="/speakers" component={Speakers} />
-          <ProtectedRoute exact path="/general/events" component={Events} />
-          <ProtectedRoute exact path="/event" component={AddEvent} />
+          <ProtectedRoute exact path="/general/events" component={GeneralEvents} />
+          <ProtectedRoute exact path="/events" component={Events} />
           <ProtectedRoute exact path="/wards" component={Ward} />
           <ProtectedRoute exact path="/federals" component={Federal} />
           <ProtectedRoute exact path="/senatorials" component={Senaterial} />

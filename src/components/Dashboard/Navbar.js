@@ -32,7 +32,7 @@ function Navbar() {
               <div class="dropdown-content">
                 <a href="#">Discussion space Post</a>
                 <a href="#">newFeed Post</a>
-                <a href="/broadcasts">Broadcast Post</a>
+                {/* <a href="/broadcasts">Broadcast Post</a> */}
               </div>
             </div> 
             <a href="">Nomination</a>
@@ -42,8 +42,7 @@ function Navbar() {
               </button>
               <div class="dropdown-content">
                 <a href="/general/events">General Event</a>
-                <a href="#">ETownhall Event</a>
-                <a href="#">Attendance</a>
+                <a href="/events">All Events</a>
               </div>
             </div>
             <a href="#home">LeaderBoard</a>
